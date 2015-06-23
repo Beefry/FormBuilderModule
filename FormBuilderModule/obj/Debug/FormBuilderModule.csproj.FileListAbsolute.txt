@@ -1,0 +1,7 @@
+C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\bin\Debug\FormBuilderModule.dll
+C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\bin\Debug\FormBuilderModule.pdb
+C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.csprojResolveAssemblyReference.cache
+C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.dll
+C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.pdb
+C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.Properties.Resources.resources
+C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.csproj.GenerateResource.Cache

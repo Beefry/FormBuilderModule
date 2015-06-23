@@ -1,0 +1,744 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Date",
+				"date_format"
+			],
+			[
+				"base",
+				"base64_decode"
+			],
+			[
+				"Template",
+				"TemplateProperty"
+			],
+			[
+				"currn",
+				"currentDate"
+			],
+			[
+				"date",
+				"occupied_date"
+			],
+			[
+				"check",
+				"check_in_date"
+			],
+			[
+				"Booking",
+				"BookingController"
+			],
+			[
+				"paid",
+				"amount_paid"
+			],
+			[
+				"for",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"In",
+				"InHouseSort"
+			],
+			[
+				"rego",
+				"registration"
+			],
+			[
+				"Owed",
+				"amountOwed"
+			],
+			[
+				"grid_spot",
+				"grid_spotlight_content"
+			],
+			[
+				"startD",
+				"startDateTS"
+			],
+			[
+				"matched",
+				"matchedArr"
+			],
+			[
+				"json",
+				"json_response"
+			],
+			[
+				"occupied",
+				"occupiedDateTS"
+			],
+			[
+				"timestamp",
+				"timestampDay"
+			],
+			[
+				"time",
+				"timestampDay"
+			],
+			[
+				"Powered",
+				"numberPoweredTotal"
+			],
+			[
+				"throw",
+				"throw_json_error"
+			],
+			[
+				"array_key",
+				"array_key_exists"
+			],
+			[
+				"phoneReg",
+				"phoneRegEx2"
+			],
+			[
+				"replace",
+				"str_replace"
+			],
+			[
+				"tile_select-",
+				"tile_select-title"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 119.0,
+		"last_filter": "Install",
+		"selected_items":
+		[
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"phpfmt ",
+				"phpfmt: analyse this"
+			],
+			[
+				"phpfmt",
+				"phpfmt: format now"
+			],
+			[
+				"phpfmt: form",
+				"phpfmt: format now"
+			],
+			[
+				"prettify",
+				"HTMLPrettify: Set Prettify Preferences"
+			],
+			[
+				"bs3-glyph",
+				"Snippet: bs3-glyphicon"
+			],
+			[
+				"snipp: bs3-nav",
+				"Snippet: bs3-navbar-responsive"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"Git Commit",
+				"Git: Commit"
+			],
+			[
+				"Git: Add",
+				"Git: Add..."
+			],
+			[
+				"Git: Com",
+				"Git: Commit"
+			],
+			[
+				"Git: commit",
+				"Git: Commit"
+			],
+			[
+				"Git: ",
+				"Git: Add..."
+			],
+			[
+				"Git: Status",
+				"Git: Status"
+			],
+			[
+				"git: Commit",
+				"Git: Commit"
+			],
+			[
+				"htmlprett",
+				"HTMLPrettify"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package install",
+				"Package Control: Install Package"
+			],
+			[
+				"TIdy",
+				"Tidy CSS (Highest Compression)"
+			],
+			[
+				"CSS",
+				"Tidy CSS"
+			],
+			[
+				"Preferences:Settings - User",
+				"Preferences: Settings - User"
+			],
+			[
+				"wrap",
+				"HTML: Wrap Selection With Tag"
+			],
+			[
+				"Snippet",
+				"Snippet: bs3-button"
+			],
+			[
+				"snip",
+				"Snippet: bs3-glyphicon"
+			],
+			[
+				"File del",
+				"File: Delete"
+			],
+			[
+				"file:",
+				"File: Duplicate"
+			],
+			[
+				"Package Control: Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Install",
+				"Package Control: Install Package"
+			],
+			[
+				"File:",
+				"File: Copy URL"
+			],
+			[
+				"Package isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Dockbl",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"Doc",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"DocBlo",
+				"DocBlockr: Reparse comment block"
+			],
+			[
+				"DocBlockr",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"Package Control:Install",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Convert Case: Swap Case"
+			],
+			[
+				"PackageControl: I",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install Package",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install ",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"Emmet",
+				"Emmet: Split\\Join Tag"
+			]
+		],
+		"width": 488.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"Package Control: Install Package",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/QBOX.sublime-project",
+		"/C/Users/Justin/AppData/Roaming/Sublime Text 3/Packages/User/Plain text.sublime-settings",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderDirectives.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/Templates/Builder.htm",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/HTML.html",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderServices.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderModule.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/js/app.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/js/angular.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/sortable.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/main.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/gulpfile.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/package.json",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/App/Components/Formbuilder/BuilderModule.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/App/main.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/App/Components/Formdisplay/formdisplay.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/jquery.formbuilder/jquery.formbuilder/src/js/formbuilder.js",
+		"/C/Program Files (x86)/IIS Express/config/administration.config",
+		"/C/Users/Justin/Downloads/andrewmcd.sql",
+		"/C/Users/Justin/Dropbox/Apps/wpb2d/wp-config.php",
+		"/C/Users/Justin/Dropbox/Beefry/Projects/Cosmo/Sherman Treater 6mo PM.csv",
+		"/C/Web Projects/Projects/formtools/modules/form_builder/published/ShermanMonthly.php",
+		"/C/Web Projects/Projects/formtools/modules/form_builder/global/code/forms.php",
+		"/C/Web Projects/Projects/formtools/global/config.php",
+		"/C/Web Projects/Projects/formtools/modules/form_builder/global/code/generator.php",
+		"/C/Web Projects/Projects/formtools/global/library.php",
+		"/C/Web Projects/Projects/formtools/create view link.html",
+		"/C/Users/Justin/Dropbox/Beefry/Projects/Cosmo/Sherman Treater Bi-Weekly PM.csv",
+		"/C/Web Projects/Projects/formtools/modules/form_builder/published/Sherman6mo.php",
+		"/C/Web Projects/Projects/formtools/modules/form_builder/form.php",
+		"/C/Web Projects/Projects/formtools/global/code/modules.php",
+		"/C/Web Projects/Projects/formtools/global/code/settings.php",
+		"/C/Web Projects/Projects/formtools/modules/form_builder/settings.php",
+		"/C/Web Projects/Projects/formtools/modules/form_builder/tab_settings_form_offline.php",
+		"/C/Web Projects/Projects/formtools/import.php",
+		"/C/Web Projects/Projects/formtools/modules/form_builder/tab_settings_main.php",
+		"/C/Web Projects/Projects/formtools/config.ini",
+		"/C/Web Projects/Projects/formtools/importTemplate.csv",
+		"/C/Users/Justin/Dropbox/Beefry/Projects/Cosmo/Chiller Weekly PM.csv",
+		"/C/Web Projects/Projects/formtools/import draft",
+		"/C/Web Projects/Projects/formtools/import.csv",
+		"/C/Web Projects/Projects/formtools/global/code/forms.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/index.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/wp-blog-header.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/wp-load.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/wp-includes/functions.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/wp-content/themes/Bpos-child/Homepage.php",
+		"/C/Users/Justin/Dropbox/Apps/wpb2d/wp-content/themes/Bpos-child/Homepage.php",
+		"/C/Web Projects/Frameworks & Libraries/wordpress-4.2.2/wp-includes/class-json.php",
+		"/C/Web Projects/Frameworks & Libraries/wordpress-4.2.2/wp-includes/class-snoopy.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/wp-admin/press-this.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-admin/includes/class-wp-press-this.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/wp-admin/setup-config.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/.htaccess",
+		"/C/Web Projects/index.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/wp-config.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/Extractormail.php",
+		"/C/Web Projects/Projects/BPositive/Hacked2/foundation.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-config.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-blog-header.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-load.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-admin/setup-config.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-config-sample.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-cron.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/index.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-settings.php",
+		"/C/Web Projects/Frameworks & Libraries/wordpress-4.2.2/wp-admin/setup-config.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/wp-includes/template-loader.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/Login-wall-yhwoy/wp-config-sample.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/Login-wall-yhwoy/login_wall.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/install.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/plugins/wordpress-importer/parsers.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/.htaccess",
+		"/C/Web Projects/Projects/BPositive/Hacked/wrapper.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/http.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/plugins/pixopoint-email-submit/admin_page.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/plugins/pixopoint-email-submit/index.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/functions.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/plugins/advanced-excerpt/advanced-excerpt.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/plugins/index.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/plugins/wordpress-importer/wordpress-importer.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/decode.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/login_wall.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/e.php",
+		"/C/Bitnami/wampstack-5.4.41-0/apps/phpmyadmin/conf/httpd-app.conf",
+		"/C/Web Projects/Projects/BPositive/Hacked/hello.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/class.akismet.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/class.akismet-admin.php",
+		"/C/Web Projects/Projects/BPositive/Hacked/class.akismet-widget.php",
+		"/C/xampp/apache/conf/httpd.conf",
+		"/C/Web Projects/Projects/formtools/global/init_page.php",
+		"/C/Web Projects/Projects/CosmoMaint/app/View/AEDForm/edit.ctp",
+		"/C/Web Projects/Projects/CosmoMaint/app/View/AEDForm/view.ctp",
+		"/C/Web Projects/Projects/CosmoMaint/app/Config/core.php",
+		"/C/Web Projects/Projects/CosmoMaint/app/webroot/css/mainstyle.css",
+		"/C/Web Projects/Projects/CosmoMaint/app/webroot/css/cake.generic.css",
+		"/C/Web Projects/Projects/CosmoMaint/app/View/Layouts/default.ctp",
+		"/C/Web Projects/Projects/CosmoMaint/app/Controller/PagesController.php",
+		"/C/Web Projects/Projects/CosmoMaint/app/View/Layouts/js/default.ctp",
+		"/C/Web Projects/Projects/CosmoMaint/app/View/Pages/home.ctp",
+		"/C/Web Projects/Projects/CosmoMaint/maint.accdb",
+		"/C/Users/Justin/AppData/Roaming/Sublime Text 3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/C/Web Projects/Projects/CosmoMaint/app/Controller/FormController.php",
+		"/C/Web Projects/Projects/CosmoMaint/lib/Cake/Controller/Controller.php",
+		"/C/Web Projects/Projects/CosmoMaint/app/View/Form/view.ctp",
+		"/C/Web Projects/Projects/CosmoMaint/app/View/Form/edit.ctp",
+		"/C/Web Projects/Projects/PWManager/includes/settings.php",
+		"/C/Web Projects/Projects/PWManager/datatable.logs.php",
+		"/C/xampp/htdocs/phpinfo.php",
+		"/C/xampp/php/php.ini",
+		"/C/Web Projects/Projects/CosmoMaint/app/Config/routes.php",
+		"/C/Web Projects/Projects/CosmoMaint/app/Config/database.php",
+		"/C/Web Projects/Projects/CosmoMaint/app/View/Pages/form.ctp",
+		"/C/xampp/htdocs/CosmoMaint/app/Config/core.php",
+		"/C/Web Projects/Projects/CosmoMaint/app/index.php",
+		"/C/Web Projects/Projects/CosmoMaint/index.php",
+		"/C/Web Projects/Projects/BPositive/Website/Uploads/.htaccess",
+		"/C/Users/Justin/Downloads/RatticWeb-1.3.1/RatticWeb-1.3.1/README.md",
+		"/C/Web Projects/Projects/BPositive/Website/.htaccess",
+		"/C/Users/Justin/Desktop/modx/model/modx/modx.class.php",
+		"/C/Users/Justin/Desktop/modx/components/getresources/snippet.getresources.php",
+		"/C/Users/Justin/Desktop/modx/components/firstchildredirect/firstchildredirect.snippet.php",
+		"/C/Users/Justin/Desktop/config.core.php",
+		"/C/Users/Justin/Desktop/modx/config/config.inc.php",
+		"/C/Users/Justin/Desktop/index.php",
+		"/C/Users/Justin/Desktop/setting.php",
+		"/C/Users/Justin/Desktop/bpos/index.php",
+		"/C/Users/Justin/Desktop/bpos/internal.php"
+	],
+	"find":
+	{
+		"height": 44.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+			"C:\\Web Projects\\Projects\\formtools",
+			"C:\\Web Projects\\Projects\\BPositive\\Hacked2",
+			"C:\\Web Projects\\Projects\\BPositive\\Hacked",
+			"C:\\Web Projects\\Projects\\BPositive\\Hacked\\plugins",
+			"C:\\Web Projects\\Projects\\BPositive\\Hacked\\",
+			"C:\\Web Projects\\Projects\\BPositive\\Hacked\\plugins",
+			"C:\\Web Projects\\BPositive\\Hacked",
+			"C:\\xampp\\htdocs\\QBOX\\",
+			"C:\\xampp\\htdocs\\Spec.io\\",
+			"C:\\xampp\\htdocs\\Spec.io\\angularjs\\components",
+			"C:\\xampp\\htdocs\\fonts",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"modelfie",
+			"modelfields",
+			"$provide.service",
+			".service",
+			"builder.",
+			"optionTemplate",
+			"field_options",
+			"bulider",
+			"builder",
+			"sortOrder",
+			"Formbuilder",
+			"_opts.targets",
+			"opts.targets",
+			"$namespace",
+			"data",
+			"ft_insert",
+			"insert",
+			"ft_update_submission",
+			"update",
+			"$LANG[\"notify_submission_not_updated\"]",
+			"The submission could not be updated",
+			"$db_name",
+			"col_name",
+			"db_name",
+			" archar",
+			"$db_name",
+			"\"col_",
+			"field[0]",
+			"update",
+			"The submission could not be updated",
+			"\n",
+			"Error creating form",
+			"filePath",
+			"ft_get_module_settings",
+			"preview.php",
+			"error doing option",
+			"$GLOBALS[\"sql\"] = $GLOBALS['sql'];",
+			"$GLOBALS",
+			"$sql",
+			"26",
+			"$importDir",
+			"import",
+			"begin_transaction",
+			"rollback",
+			"begin_t",
+			"commit",
+			"rollback",
+			"die",
+			"var_dump",
+			"->$",
+			"33",
+			"Edit edit",
+			"Edit Edit",
+			"medium','7",
+			"'",
+			"	",
+			",",
+			"_ft_cache_form_stats",
+			"field_id,",
+			"('1'",
+			"?",
+			"N/A",
+			"	",
+			"Hacked",
+			"setup-config",
+			"If you need to reset any of the configuration items in this file",
+			"already exists",
+			"The file",
+			"The file 'wp-config.php' already exists",
+			"sorry, I need a wp-config-sample",
+			"eval(",
+			"code",
+			"eval(",
+			"wp-config-sample",
+			"touch",
+			"eval(",
+			"eval",
+			"groups",
+			"wp_class_support",
+			"php $[a-zA-Z]*=’as';",
+			"\\\\x[0-9]{2}",
+			"base64_decode",
+			"http://",
+			"eval(",
+			"eval",
+			"eval ",
+			"eval",
+			"eval(",
+			"eval",
+			"[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}",
+			"0x[0-9]{2,3}",
+			"Ray",
+			"_dlss",
+			"ray",
+			"php",
+			"ft_search",
+			"ft_search_forms",
+			"template",
+			"hello@beefry.com",
+			"();\n",
+			"var_dump",
+			"css",
+			"var_",
+			"type=\"text\" name=\"",
+			"DB_PATH",
+			"issue",
+			"value=\"\"",
+			"$dbPath",
+			"log",
+			"worleybrandlaunchpad.com/bpos",
+			"route",
+			"blog",
+			"/\n",
+			"events",
+			".html",
+			"<url>",
+			"	200",
+			"platty412",
+			"POST",
+			"isBodyHtml",
+			"events",
+			"hero",
+			"heroe",
+			"events",
+			"grid_link",
+			"Cache::config",
+			"config",
+			"Arrival"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": true,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 128.0
+	},
+	"output.variable_get":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "QBOX.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Justin\\Source\\Workspaces\\FormBuilder\\FormBuilderModule\\FormBuilderModule\\App\\QBOX.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 202.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

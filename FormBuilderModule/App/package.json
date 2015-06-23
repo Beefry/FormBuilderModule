@@ -1,0 +1,22 @@
+{
+  "name": "Beefry.FormBuilder",
+  "version": "1.0.0",
+  "description": "A form-builder plugin written in AngularJS",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.1"
+  },
+  "devDependencies": {
+    "connect": "^3.3.5",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-livereload": "^3.8.0",
+    "gulp-sass": "^2.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Justin Cooper",
+  "license": "MIT"
+}
