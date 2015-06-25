@@ -1,13 +1,11 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
-// var livereload = require('gulp-livereload');
 
 gulp.task('sass', function() {
 	return gulp.src('css/sass/style.sass')
 		.pipe(sass())
 		.pipe(gulp.dest('css'));
-		// .pipe(livereload());
 });
 
 gulp.task('concat', function(){
@@ -25,11 +23,9 @@ gulp.task('concat', function(){
 	])
 	.pipe(concat('app.js'))
 	.pipe(gulp.dest('js'));
-	// .pipe(livereload());
 });
 
 gulp.task('watch', function() {
-	// livereload.listen();
-	//gulp.watch('css/**/*.sass',['sass']);
 	gulp.watch('angularjs/**/*.js',['concat']);
+	gulp.watch('sass/*.sass',['sass']);
 });

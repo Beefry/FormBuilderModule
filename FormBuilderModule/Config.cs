@@ -12,25 +12,64 @@ namespace Beefry.FormBuilder
 {
     public class Config
     {
+        public readonly bool isDebug;
+        private HttpServerUtility ServerContext;
+
         public static Dictionary<string,string> DefaultSettings = new Dictionary<string,string> {
             {"TablePrefix","bf_"} ,
             {"DatabaseName","beefryfb"},
             {"DatabaseHostname",""},
             {"DatabaseUsername",""},
-            {"DatabasePassword",""}
+            {"DatabasePassword",""},
+            {"DatabaseSchema","dbo"}
         };
-        public static Dictionary<string, string> TableNames = new Dictionary<string, string>
+        public static Dictionary<string, string> TableNamesSansSchema
         {
-            {"Forms","forms"},
-            {"Fields","fields"},
-            {"Options","options"}
-        };
-        private HttpServerUtility ServerContext;
+            get
+            {
+                return new Dictionary<string, string> {
+                {"Forms",DefaultSettings["TablePrefix"]+"forms"},
+                {"Fields",DefaultSettings["TablePrefix"]+"fields"},
+                {"Options",DefaultSettings["TablePrefix"]+"options "},
+                {"Values",DefaultSettings["TablePrefix"]+"values"}
+                };
+            }
+        }
 
-        public Config(HttpServerUtility Server)
+        public static Dictionary<string, string> TableNames
+        {
+            get
+            {
+                return new Dictionary<string, string> {
+                {"Forms",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"forms"},
+                {"Fields",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"fields"},
+                {"Options",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"options "},
+                {"Values",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"values"}
+                };
+            }
+        }
+        
+        public static string DBConnectionStringWithDB
+        {
+            get
+            {
+                return "Server=" + Config.DefaultSettings["DatabaseHostname"] + ";Database=" + Config.DefaultSettings["DatabaseName"] + ";Uid=" + Config.DefaultSettings["DatabaseUsername"] + ";Pwd=" + Config.DefaultSettings["DatabasePassword"] + ";";
+            }
+        }
+
+        public static string DBConnectionString
+        {
+            get
+            {
+                return "Server=" + Config.DefaultSettings["DatabaseHostname"] + ";Uid=" + Config.DefaultSettings["DatabaseUsername"] + ";Pwd=" + Config.DefaultSettings["DatabasePassword"] + ";";
+            }
+        }
+
+        public Config(HttpServerUtility Server, bool isDebug = false)
         {
             try
             {
+                this.isDebug = isDebug;
                 ConfigValidation();
                 this.ServerContext = Server;
                 Init();
@@ -130,15 +169,19 @@ namespace Beefry.FormBuilder
             }
         }
 
+        /// <summary>
+        /// Ensures that the required tables for the formbuilder are in place on the specified MSSQL Database.
+        /// </summary>
+        /// <remarks>
+        /// This currently only looks for the existance of the database and tables. Need to later ensure that the columns are correct as well and update if necessary.
+        /// </remarks>
         private void EnsureTableIntegrity()
         {
-            using (SqlConnection conn = new SqlConnection("Server="+DefaultSettings["DatabaseHostname"]+";Uid="+DefaultSettings["DatabaseUsername"]+";Pwd="+DefaultSettings["DatabasePassword"]+";"))
+            using (SqlConnection conn = new SqlConnection(Config.DBConnectionString))
             {
                 using (SqlCommand comm = new SqlCommand("", conn))
                 {
-                    //Check Database exists and create if not;
-                    comm.CommandText = "IF (NOT EXISTS(SELECT * FROM sys.databases WHERE name = @dbName)) BEGIN CREATE DATABASE " + DefaultSettings["DatabaseName"] + " END";
-                    comm.Parameters.AddWithValue("@dbName", DefaultSettings["DatabaseName"]);
+                    //Try to open database connection;
                     try
                     {
                         conn.Open();
@@ -147,6 +190,23 @@ namespace Beefry.FormBuilder
                     {
                         throw ex;
                     }
+
+                    if (isDebug)
+                    {
+                        comm.CommandText = "DROP DATABASE " + DefaultSettings["DatabaseName"];
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        } 
+                    }
+
+                    //Check Database exists and create if not;
+                    comm.CommandText = "IF (NOT EXISTS(SELECT * FROM sys.databases WHERE name = @dbName)) BEGIN CREATE DATABASE " + DefaultSettings["DatabaseName"] + " END";
+                    comm.Parameters.AddWithValue("@dbName", DefaultSettings["DatabaseName"]);
 
                     try
                     {
@@ -162,9 +222,9 @@ namespace Beefry.FormBuilder
                     //Check if forms table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNames["Forms"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, Label varchar(50), Description varchar(140), CreatedDate datetime); END";
-                    comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
-                    comm.Parameters.AddWithValue("tableName", TableNames["Forms"]);
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Forms"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, Label varchar(50), Description varchar(140), CreatedDate datetime); END";
+                    comm.Parameters.AddWithValue("@dbName", DefaultSettings["DatabaseName"]);
+                    comm.Parameters.AddWithValue("@tableName", TableNamesSansSchema["Forms"]);
                     try
                     {
                         comm.ExecuteNonQuery();
@@ -177,9 +237,9 @@ namespace Beefry.FormBuilder
                     //Check if fields table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNames["Fields"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FormID int, Label varchar(50), Type varchar(50), SortOrder int, Value varchar(MAX)); END";
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Fields"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FormID int, Label varchar(50), Type varchar(50), Required bit, SortOrder int); END";
                     comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
-                    comm.Parameters.AddWithValue("tableName", TableNames["Fields"]);
+                    comm.Parameters.AddWithValue("tableName", TableNamesSansSchema["Fields"]);
                     try
                     {
                         comm.ExecuteNonQuery();
@@ -192,9 +252,24 @@ namespace Beefry.FormBuilder
                     //Check if options table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNames["Options"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FieldID int, Value varchar(50), SortOrder int); END";
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Options"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FieldID int, Value varchar(50), SortOrder int); END";
                     comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
-                    comm.Parameters.AddWithValue("tableName", TableNames["Options"]);
+                    comm.Parameters.AddWithValue("tableName", TableNamesSansSchema["Options"]);
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                    //Check if values table exists and create if not
+                    comm.Parameters.Clear();
+                    comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Values"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FieldID int, Value varchar(150)); END";
+                    comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
+                    comm.Parameters.AddWithValue("tableName", TableNamesSansSchema["Values"]);
                     try
                     {
                         comm.ExecuteNonQuery();

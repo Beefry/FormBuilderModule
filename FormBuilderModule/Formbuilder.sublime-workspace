@@ -108,11 +108,12 @@
 	"buffers":
 	[
 		{
-			"file": "App/angularjs/Components/Formbuilder/BuilderDirectives.js",
+			"contents": "   at Beefry.FormBuilder.Form.saveForm()\n   at Cosmo.Areas.API.Controllers.FormController.Post(Form dataForm) in c:\\Users\\Justin\\Source\\Workspaces\\Cosmo\\Cosmo\\Cosmo\\Areas\\API\\Controllers\\FormController.cs:line 30\n   at lambda_method(Closure , Object , Object[] )\n   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClassc.<GetExecutor>b__6(Object instance, Object[] methodParameters)\n   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)\n   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)",
 			"settings":
 			{
-				"buffer_size": 2833,
-				"line_ending": "Windows"
+				"buffer_size": 726,
+				"line_ending": "Windows",
+				"name": "at Beefry.FormBuilder.Form.saveForm()"
 			}
 		}
 	],
@@ -345,16 +346,18 @@
 	[
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/Templates"
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/sass"
 	],
 	"file_history":
 	[
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/.gitignore",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/gulpfile.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/HTML.html",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/Readme.md",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/gulplaunch.bat",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderDirectives.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/Templates/Builder.htm",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderServices.js",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderDirectives.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/Config.cs",
 		"/C/xampp/htdocs/QBOX/api/app/Config/database.php",
 		"/C/Users/Justin/AppData/Roaming/Sublime Text 3/Packages/User/Plain text.sublime-settings",
@@ -362,13 +365,11 @@
 		"/C/Users/Justin/Source/Workspaces/Cosmo/Cosmo/Cosmo/Global.asax.cs",
 		"/C/Users/Justin/AppData/Roaming/Sublime Text 3/Packages/User/C#.sublime-settings",
 		"/C/Users/Justin/Source/Workspaces/Cosmo/Cosmo/Cosmo/Global.asax",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/HTML.html",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderModule.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/js/app.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/js/angular.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/sortable.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/main.js",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/gulpfile.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/package.json",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/App/Components/Formbuilder/BuilderModule.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/App/main.js",
@@ -476,10 +477,7 @@
 		"/C/Web Projects/Projects/BPositive/Website/Uploads/.htaccess",
 		"/C/Users/Justin/Downloads/RatticWeb-1.3.1/RatticWeb-1.3.1/README.md",
 		"/C/Web Projects/Projects/BPositive/Website/.htaccess",
-		"/C/Users/Justin/Desktop/modx/model/modx/modx.class.php",
-		"/C/Users/Justin/Desktop/modx/components/getresources/snippet.getresources.php",
-		"/C/Users/Justin/Desktop/modx/components/firstchildredirect/firstchildredirect.snippet.php",
-		"/C/Users/Justin/Desktop/config.core.php"
+		"/C/Users/Justin/Desktop/modx/model/modx/modx.class.php"
 	],
 	"find":
 	{
@@ -660,28 +658,28 @@
 			[
 				{
 					"buffer": 0,
-					"file": "App/angularjs/Components/Formbuilder/BuilderDirectives.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2833,
+						"buffer_size": 726,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2380,
-								2380
+								40,
+								40
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"auto_name": "at Beefry.FormBuilder.Form.saveForm()",
+							"default_dir": "C:\\Users\\Justin\\Source\\Workspaces\\FormBuilder\\FormBuilderModule\\FormBuilderModule",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1560.0,
+						"translation.y": 140.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
