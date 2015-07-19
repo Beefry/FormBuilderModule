@@ -1,0 +1,81 @@
+<section class='fb-meta'>
+	<div>
+		<label>
+			<span>Name</span>
+			<input type='text' ng-model="model.Name" placeholder="Name"/>
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Description</span>
+			<input type='text' ng-model="model.Description" placeholder="Description"/>
+		</label>
+	</div>
+</section>
+<section class='fb-fields'>
+	<ul ui-sortable ng-model="model.Fields">
+		<li class='field-group' ng-repeat="field in model.Fields">
+			<div class='field-main' ng-switwch="field.Type">
+				<div ng-switch-when="text">
+					<h3>{{field.Label}}</h3>
+					<p>{{field.Values[0].Content}}</p>
+				</div>
+				<div ng-switch-when="textbox">
+					<h3>{{field.Label}}</h3>
+					<input type="text" ng-model="field.Values[0].Content"/>
+				</div>
+				<div ng-switch-when="textarea">
+					<h3>{{field.Label}}</h3>
+					<textarea ng-model="field.Values[0].Content"/>
+				</div>
+				<div ng-switch-when="radio">
+					<h3>{{field.Label}}</h3>
+					<label ng-repeat="option in field.Options">
+						<span>option.Value</span>
+						<input type="radio" name="field.ID" ng-model="field.Values"/>
+					</label>
+				</div>
+				<div ng-switch-when="select">
+					<h3>{{field.Label}}</h3>
+					<select>
+						<option ng-repeat="option in field.Options" ng-selected="field.Values">{{option.Value}}</option>
+					</option>
+				</div>
+				<div ng-switch-when="checkbox">
+					<h3>{{field.Label}}</h3>
+					<label ng-repeat="option in field.Options">
+						<span>option.Value</span>
+						<input type="checkbox" name="field.ID" ng-model="field.Values"/>
+					</label>
+				</div>
+			</div>
+			<div>
+				<span>Type:{{field.Type}}</span>
+				<label>
+					<span>Label:</span>
+					<input type='text' ng-model="field.Label" class='field-name'/>
+				</label>
+				<button type="button" ng-show="hasOptions(field.Type)" ng-click="addNewOption(field)">Add Option</button>
+				<button type="button" ng-click="removeField(field)">Remove</button>
+			</div>
+			<div class='field-text-value' ng-show='field.Type == "text"'>
+				<textarea ng-model='field.Values[0].Content'/>
+			</div>
+			<div class='field-options' ng-show="field.Options.length > 0">
+				<ul ui-sortable ng-model="field.Options">
+					<li ng-repeat="option in field.Options">
+						<label>
+							<span>Value:</span>
+							<input type="text" ng-model="option.Value"/>
+							<button type="button" ng-click="removeOption(field,option)">Remove</button>
+						</label>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+	<div class='field-controls'></div>
+</section>
+<section class='form-controls'>
+	<button ng-click="submitForm()">Submit Form</button>
+</section>

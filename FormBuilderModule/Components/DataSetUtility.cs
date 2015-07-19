@@ -9,7 +9,7 @@ namespace Beefry
 {
     public static class DataSetExension
     {
-        public static bool HasResults(this DataSet ds)
+        private static bool HasResults(this DataSet ds)
         {
             if (ds.Tables.Count > 0)
             {
@@ -25,6 +25,18 @@ namespace Beefry
             else
             {
                 return false;
+            }
+        }
+
+        public static DataRowCollection GetResults(this DataSet ds)
+        {
+            if (ds.HasResults())
+            {
+                return ds.Tables[0].Rows;
+            }
+            else
+            {
+                return null;
             }
         }
     }

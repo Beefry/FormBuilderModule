@@ -108,12 +108,35 @@
 	"buffers":
 	[
 		{
-			"contents": "   at Beefry.FormBuilder.Form.saveForm()\n   at Cosmo.Areas.API.Controllers.FormController.Post(Form dataForm) in c:\\Users\\Justin\\Source\\Workspaces\\Cosmo\\Cosmo\\Cosmo\\Areas\\API\\Controllers\\FormController.cs:line 30\n   at lambda_method(Closure , Object , Object[] )\n   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClassc.<GetExecutor>b__6(Object instance, Object[] methodParameters)\n   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)\n   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)",
+			"file": "App/angularjs/Components/Formbuilder/BuilderDirectives.js",
 			"settings":
 			{
-				"buffer_size": 726,
-				"line_ending": "Windows",
-				"name": "at Beefry.FormBuilder.Form.saveForm()"
+				"buffer_size": 4508,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "App/angularjs/Components/Formbuilder/BuilderServices.js",
+			"settings":
+			{
+				"buffer_size": 411,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "App/Templates/Builder.htm",
+			"settings":
+			{
+				"buffer_size": 1936,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "App/Templates/Displayer.htm",
+			"settings":
+			{
+				"buffer_size": 2581,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -124,10 +147,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 400.0,
-		"last_filter": "OmniSharp",
+		"height": 193.0,
+		"last_filter": "install",
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"OmniSharp",
 				"OmniSharpSublime: Add Reference"
@@ -142,10 +169,6 @@
 			],
 			[
 				"package ",
-				"Package Control: Install Package"
-			],
-			[
-				"install",
 				"Package Control: Install Package"
 			],
 			[
@@ -321,7 +344,7 @@
 				"Emmet: Split\\Join Tag"
 			]
 		],
-		"width": 496.0
+		"width": 520.0
 	},
 	"console":
 	{
@@ -346,18 +369,22 @@
 	[
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/sass"
 	],
 	"file_history":
 	[
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/.gitignore",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderServices.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/Templates/Builder.htm",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderModule.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderDirectives.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/gulpfile.js",
+		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/.gitignore",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/HTML.html",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/Readme.md",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/gulplaunch.bat",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderDirectives.js",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/Templates/Builder.htm",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderServices.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/Config.cs",
 		"/C/xampp/htdocs/QBOX/api/app/Config/database.php",
 		"/C/Users/Justin/AppData/Roaming/Sublime Text 3/Packages/User/Plain text.sublime-settings",
@@ -365,7 +392,6 @@
 		"/C/Users/Justin/Source/Workspaces/Cosmo/Cosmo/Cosmo/Global.asax.cs",
 		"/C/Users/Justin/AppData/Roaming/Sublime Text 3/Packages/User/C#.sublime-settings",
 		"/C/Users/Justin/Source/Workspaces/Cosmo/Cosmo/Cosmo/Global.asax",
-		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/Components/Formbuilder/BuilderModule.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/js/app.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/js/angular.js",
 		"/C/Users/Justin/Source/Workspaces/FormBuilder/FormBuilderModule/FormBuilderModule/App/angularjs/sortable.js",
@@ -507,6 +533,11 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"$location",
+			"FormBuilderID",
+			".Values",
+			".Value",
+			"\\.field",
 			"\\.Value",
 			"\\.Options",
 			"\\.options",
@@ -629,12 +660,7 @@
 			"DB_PATH",
 			"issue",
 			"value=\"\"",
-			"$dbPath",
-			"log",
-			"worleybrandlaunchpad.com/bpos",
-			"route",
-			"blog",
-			"/\n"
+			"$dbPath"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -658,31 +684,118 @@
 			[
 				{
 					"buffer": 0,
+					"file": "App/angularjs/Components/Formbuilder/BuilderDirectives.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 726,
+						"buffer_size": 4508,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								40,
-								40
+								3374,
+								3374
 							]
 						],
 						"settings":
 						{
-							"auto_name": "at Beefry.FormBuilder.Form.saveForm()",
-							"default_dir": "C:\\Users\\Justin\\Source\\Workspaces\\FormBuilder\\FormBuilderModule\\FormBuilderModule",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
-						"translation.x": 0.0,
-						"translation.y": 140.0,
+						"translation.x": -0.0,
+						"translation.y": 2040.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "App/angularjs/Components/Formbuilder/BuilderServices.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 411,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								255,
+								255
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "App/Templates/Builder.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1936,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1077,
+								1077
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 300.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "App/Templates/Displayer.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2581,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								658,
+								658
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 366.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

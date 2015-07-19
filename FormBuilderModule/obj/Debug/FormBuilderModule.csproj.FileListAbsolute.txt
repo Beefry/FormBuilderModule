@@ -5,3 +5,4 @@ C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModul
 C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.pdb
 C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.Properties.Resources.resources
 C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.csproj.GenerateResource.Cache
+C:\Users\Justin\Source\Workspaces\FormBuilder\FormBuilderModule\FormBuilderModule\bin\Debug\Newtonsoft.Json.dll

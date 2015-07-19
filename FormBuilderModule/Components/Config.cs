@@ -28,10 +28,12 @@ namespace Beefry.FormBuilder
             get
             {
                 return new Dictionary<string, string> {
+                {"Templates",DefaultSettings["TablePrefix"]+"templates"},
                 {"Forms",DefaultSettings["TablePrefix"]+"forms"},
                 {"Fields",DefaultSettings["TablePrefix"]+"fields"},
                 {"Options",DefaultSettings["TablePrefix"]+"options "},
-                {"Values",DefaultSettings["TablePrefix"]+"values"}
+                {"Values",DefaultSettings["TablePrefix"]+"values"},
+                {"Sections",DefaultSettings["TablePrefix"]+"sections"},
                 };
             }
         }
@@ -222,9 +224,9 @@ namespace Beefry.FormBuilder
                     //Check if forms table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Forms"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, Label varchar(50), Description varchar(140), CreatedDate datetime); END";
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Templates"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, Label varchar(50), Description varchar(140), CreatedDate datetime); END";
                     comm.Parameters.AddWithValue("@dbName", DefaultSettings["DatabaseName"]);
-                    comm.Parameters.AddWithValue("@tableName", TableNamesSansSchema["Forms"]);
+                    comm.Parameters.AddWithValue("@tableName", TableNamesSansSchema["Templates"]);
                     try
                     {
                         comm.ExecuteNonQuery();
@@ -237,7 +239,7 @@ namespace Beefry.FormBuilder
                     //Check if fields table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Fields"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FormID int, Label varchar(50), Type varchar(50), Required bit, SortOrder int); END";
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Fields"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, SectionID int, Label varchar(50), Type varchar(50), Required bit, SortOrder int); END";
                     comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
                     comm.Parameters.AddWithValue("tableName", TableNamesSansSchema["Fields"]);
                     try
@@ -267,9 +269,39 @@ namespace Beefry.FormBuilder
                     //Check if values table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Values"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FieldID int, Value varchar(150)); END";
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Values"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FormID int, FieldID int, Content varchar(150)); END";
                     comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
                     comm.Parameters.AddWithValue("tableName", TableNamesSansSchema["Values"]);
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                    //Check if sections table exists and create if not
+                    comm.Parameters.Clear();
+                    comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Sections"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FormID int, Name varchar(50), SortOrder int); END";
+                    comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
+                    comm.Parameters.AddWithValue("tableName", TableNamesSansSchema["Sections"]);
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                    //Check if forms table exists and create if not
+                    comm.Parameters.Clear();
+                    comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Forms"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, TemplateID int, CreatedDate datetime, CreatedBy varchar(50)); END";
+                    comm.Parameters.AddWithValue("@dbName", DefaultSettings["DatabaseName"]);
+                    comm.Parameters.AddWithValue("@tableName", TableNamesSansSchema["Forms"]);
                     try
                     {
                         comm.ExecuteNonQuery();

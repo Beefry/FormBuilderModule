@@ -22,11 +22,11 @@
 						<span>Label:</span>
 						<input type='text' ng-model="field.Label" class='field-name'/>
 					</label>
-					<button type="button" ng-show="field.hasOptions == true" ng-click="addNewOption(field)">Add Option</button>
-					<button type="button" ng-click="removeField(field.ID)">Remove</button>
+					<button type="button" ng-show="hasOptions(field.Type)" ng-click="addNewOption(field)">Add Option</button>
+					<button type="button" ng-click="removeField(field)">Remove</button>
 				</div>
 				<div class='field-text-value' ng-show='field.Type == "text"'>
-					<textarea ng-change="fieldChanged()" ng-model='field.Value'/>
+					<textarea ng-model='field.Values[0].Content'/>
 				</div>
 				<div class='field-options' ng-show="field.Options.length > 0">
 					<ul ui-sortable ng-model="field.Options">

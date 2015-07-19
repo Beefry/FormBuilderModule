@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -42,19 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
-    <Compile Include="DataSetUtility.cs" />
-    <Compile Include="Field.cs" />
-    <Compile Include="Form.cs" />
-    <Compile Include="FormBuilderException.cs" />
-    <Compile Include="Option.cs" />
+    <Compile Include="BeefryDataAdapter.cs" />
+    <Compile Include="Components\Config.cs" />
+    <Compile Include="Components\DataSetUtility.cs" />
+    <Compile Include="Components\Field.cs" />
+    <Compile Include="Components\Forms\Form.cs" />
+    <Compile Include="Components\FormBuilderException.cs" />
+    <Compile Include="Components\Forms\FormCollection.cs" />
+    <Compile Include="Components\Forms\FormDataAdapter.cs" />
+    <Compile Include="Components\Option.cs" />
+    <Compile Include="Components\Templates\TemplateCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Value.cs" />
+    <Compile Include="Components\Section.cs" />
+    <Compile Include="Components\Templates\Template.cs" />
+    <Compile Include="Components\Templates\TemplateDataAdapter.cs" />
+    <Compile Include="Components\Value.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\angularjs\Components\Formbuilder\BuilderDirectives.js" />
@@ -5017,6 +5025,7 @@
     <None Include="App\package.json" />
     <None Include="App\QBOX.sublime-project" />
     <None Include="App\QBOX.sublime-workspace" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\node_modules\gulp-concat\node_modules\gulp-util\node_modules\dateformat\node_modules\meow\node_modules\indent-string\node_modules\repeating\node_modules\is-finite\node_modules\" />
