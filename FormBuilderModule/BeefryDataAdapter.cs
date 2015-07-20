@@ -24,11 +24,13 @@ namespace Beefry.FormBuilder
             conn = new SqlConnection(Config.DBConnectionStringWithDB);
             comm = new SqlCommand();
             comm.Connection = conn;
+            da = new SqlDataAdapter(comm);
+            ds = new DataSet();
         }
 
         protected void ClearData()
         {
-            ds.Clear();
+            //ds.Clear();
             comm.Parameters.Clear();
         }
     }

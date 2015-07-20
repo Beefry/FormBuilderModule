@@ -43,10 +43,12 @@ namespace Beefry.FormBuilder
             get
             {
                 return new Dictionary<string, string> {
+                {"Templates",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"templates"},
                 {"Forms",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"forms"},
                 {"Fields",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"fields"},
                 {"Options",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"options "},
-                {"Values",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"values"}
+                {"Values",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"values"},
+                {"Sections",DefaultSettings["DatabaseSchema"]+"."+DefaultSettings["TablePrefix"]+"sections"}
                 };
             }
         }
@@ -224,7 +226,7 @@ namespace Beefry.FormBuilder
                     //Check if forms table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Templates"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, Label varchar(50), Description varchar(140), CreatedDate datetime); END";
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Templates"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, Name varchar(50), Description varchar(140), CreatedDate datetime); END";
                     comm.Parameters.AddWithValue("@dbName", DefaultSettings["DatabaseName"]);
                     comm.Parameters.AddWithValue("@tableName", TableNamesSansSchema["Templates"]);
                     try

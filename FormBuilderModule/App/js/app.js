@@ -580,9 +580,10 @@ angular.module('ui.sortable', [])
   ]);
 
 angular.module("beefry.fb",['formbuilder']);
-angular.module('formbuilder',['ngResource','ui.sortable']);
 
-angular.module('formbuilder').service('formAPI',['$resource','formAPIPath',function($resource,formAPIPath){
+angular.module('formbuilder',['ngResource','ui.sortable']);
+angular.module('formbuilder')
+.service('formAPI',['$resource','formAPIPath',function($resource,formAPIPath){
 	this.save = function(form,callback) {
 		Form = $resource(formAPIPath);
 		// console.log(form);
@@ -608,104 +609,95 @@ angular.module('formbuilder')
 			controllerAs: 'Builder',
 			controller: ['$scope','$window','formAPI','redirectPath',function($scope,$window,formAPI,redirectPath){
 				var builder = this;
-				var config = {
-					Field: function() {
-						this.Type = $scope.newFieldType;
-						this.FormID = $scope.model.ID;
-						switch (this.Type) {
-							case 'textbox':
-							case 'textarea':
-							case 'text':
-								this.hasOptions = false;
-								break;
-							case 'select':
-							case 'checkbox':
-							case 'radio':
-								this.hasOptions = true;
-								this.Options = [];
-								break;
-							case '':
-								throw new Error("Please select a field type first.");
-								break;
-							default:
-								throw new Error("Field type not supported. Type given: " + this.Type);
-								break;
-						}
+				var Section = function() {
+					this.ID = null;
+					this.FormID = $scope.model.ID;
+					this.SortOrder = null;
+					this.Name = "";
+					this.Fields = [];
+					this.newFieldType = "";
+				};
+				var Field = function(section) {
+					this.Type = section.newFieldType;
+					this.SectionID = section.ID;
+					this.Values = [];
 
-						if (this.Type == 'text')
-							this.Values = [new config.Value(this)];
-						else
-							this.Values = [];
+					switch (this.Type) {
+						case 'textbox':
+						case 'textarea':
+						case 'text':
+							this.hasOptions = false;
+							break;
+						case 'select':
+						case 'checkbox':
+						case 'radio':
+							this.hasOptions = true;
+							this.Options = [];
+							break;
+						case '':
+							throw new Error("Please select a field type first.");
+							break;
+						default:
+							throw new Error("Field type not supported. Type given: " + this.Type);
+							break;
+					}
 
-						if($scope.model.Fields.length > 0) {
-							this.SortOrder = ($scope.model.Fields.reduce(function(prev,curr){
-							    if (curr.SortOrder > prev)
-							        return curr.SortOrder;
-								else
-									return prev;
-							},0))+1;
-						} else {
-						    this.SortOrder = 1;
-						}
-					},
-					Option: function(field) {
-						this.FieldID = field.ID;
-						//TODO: Sort order neeeds to be fixed so that it iss based on the order of array server-side
-						if(field.Options.length == 0) {
-							this.SortOrder = 0;
-						} else {
-						    this.SortOrder = (field.Options.reduce(function (prev, curr) {
-						        if (curr.SortOrder > prev)
-						            return curr.SortOrder;
-								else
-									return prev;
-							},0))+1;
-						}
-						this.Value = "";
-					},
-					Value: function(field) {
-						this.FieldID = field.ID;
-						this.ID = null;
-						this.Content = "";
+					if (this.Type == 'text')
+						this.Options = [new Option(this)];
+					else
+						this.Options = [];
+
+					if(section.Fields.length > 0) {
+						this.SortOrder = (section.Fields.reduce(function(prev,curr){
+						    if (curr.SortOrder > prev)
+						        return curr.SortOrder;
+							else
+								return prev;
+						},0))+1;
+					} else {
+					    this.SortOrder = 1;
 					}
 				};
 
-				function Form() {
+				var Option = function(field) {
+					this.FieldID = field.ID;
+					this.Value = "";
+				};
+
+				var Form = function () {
 					this.ID = null;
 					this.Name = null;
 					this.Description = null;
-					this.Fields = [];
-				}
+					this.Sections = [];
+				};
 
 				$scope.model = new Form();
 				$scope.newFieldType = "";
 
-				$scope.addNewField = function() {
+				$scope.addField = function(section) {
 					try {
-						var newField = new config.Field();
-						$scope.model.Fields.push(newField);
+						var newField = new Field(section);
+						section.Fields.push(newField);
+						console.log(newField);
+						console.log(section);
 					} catch (error) {
 						//handle error message
 						throw error;
 						delete newField;
 					}
-					$scope.newFieldType = "";
+					section.newFieldType = "";
 				};
 
-				$scope.removeField = function(field) {
+				$scope.removeField = function(section,field) {
 					//Do confirmation here.
-					$scope.model.Fields = $scope.model.Fields.filter(function(element) {
+					section.Fields = section.Fields.filter(function(element) {
 						return element !== field;
 					});
 				};
 
-				$scope.fieldChanged = function() {
-					console.log($scope.model);
-				};
-
 				$scope.addNewOption = function(field) {
 					//for debug only consolidate later
-					var newOption = new config.Option(field);
+					var newOption = new Option(field);
 					field.Options.push(newOption);
 				};
 
@@ -715,7 +707,27 @@ angular.module('formbuilder')
 					});
 				};
 
+				$scope.addSection = function() {
+					$scope.model.Sections.push(new Section());
+				}
+
+				$scope.removeSection = function(section) {
+					$scope.model.Sections = $scope.model.Sections.filter(function(currSection) {
+						return currSection != section;
+					})
+				}
+
 				$scope.saveForm = function() {
+					for(var i = 0; i < $scope.model.Sections.length-1; i++) {
+						delete $scope.model.Sections[i].newFieldType;
+					}
+					$scope.model.Sections.map(function(section,sectionIndex) {
+						section.SortOrder = sectionIndex;
+						section.Fields.map(function(field,fieldIndex) {
+							field.SortOrder = fieldIndex;
+						})
+					});
+					console.log($scope.model);
 					formAPI.save($scope.model,function(data) {
 						console.log(data.result);
 						if(data.result == "success") {

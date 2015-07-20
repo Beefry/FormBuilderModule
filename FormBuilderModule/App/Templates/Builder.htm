@@ -1,60 +1,69 @@
 <section class='fb-meta'>
-	<div>
-		<label>
-			<span>Name</span>
-			<input type='text' ng-model="model.Name" placeholder="Name"/>
-		</label>
-	</div>
-	<div>
-		<label>
-			<span>Description</span>
-			<input type='text' ng-model="model.Description" placeholder="Description"/>
-		</label>
-	</div>
+    <div>
+        <label>
+            <span>Name</span>
+            <input type='text' ng-model="model.Name" placeholder="Name" />
+        </label>
+    </div>
+    <div>
+        <label>
+            <span>Description</span>
+            <input type='text' ng-model="model.Description" placeholder="Description" />
+        </label>
+    </div>
 </section>
-<section class='fb-fields'>
-	<ul ui-sortable ng-model="model.Fields">
-		<li class='field-group' ng-repeat="field in model.Fields">
-			<div>
-				<div class='field-main'>
-					<span>Type:{{field.Type}}</span>
-					<label>
-						<span>Label:</span>
-						<input type='text' ng-model="field.Label" class='field-name'/>
-					</label>
-					<button type="button" ng-show="hasOptions(field.Type)" ng-click="addNewOption(field)">Add Option</button>
-					<button type="button" ng-click="removeField(field)">Remove</button>
-				</div>
-				<div class='field-text-value' ng-show='field.Type == "text"'>
-					<textarea ng-model='field.Values[0].Content'/>
-				</div>
-				<div class='field-options' ng-show="field.Options.length > 0">
-					<ul ui-sortable ng-model="field.Options">
-						<li ng-repeat="option in field.Options">
-							<label>
-								<span>Value:</span>
-								<input type="text" ng-model="option.Value"/>
-								<button type="button" ng-click="removeOption(field,option)">Remove</button>
-							</label>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</li>
-	</ul>
-	<div class='field-controls'>
-		<select class='new-field-type' ng-model="newFieldType">
-			<option value=""></option>
-			<option value="textbox">Textbox</option>
-			<option value="text">Text</option>
-			<option value="textarea">Textarea</option>
-			<option value="radio">Radio</option>
-			<option value="checkbox">Checkbox</option>
-			<option value="select">Select</option>
-		</select>
-		<button type='button' ng-click="addNewField()">Add Field</button>
-	</div>
+<section class='sections'>
+    <ul ui-sortable ng-model="model.Sections">
+        <li class='section-group' ng-repeat="section in model.Sections">
+            <input type="text" ng-model="section.Name" placeholder="Section Name" />
+            <ul ui-sortable ng-model="section.Fields">
+                <li class='field-group' ng-repeat="field in section.Fields">
+                    <div>
+                        <div class='field-main'>
+                            <span>Type:{{field.Type}}</span>
+                            <label>
+                                <span>Label:</span>
+                                <input type='text' ng-model="field.Label" class='field-name' />
+                            </label>
+                            <button type="button" ng-show="hasOptions(field.Type)" ng-click="addNewOption(field)">Add Option</button>
+                            <button type="button" ng-click="removeField(section,field)">Remove</button>
+                        </div>
+                        <div class='field-text-value' ng-show='field.Type == "text"'>
+                            <textarea ng-model='field.Options[0].Value' />
+                        </div>
+                        <div class='field-options' ng-show="field.Options.length > 0 && field.Type != 'text'">
+                            <ul ui-sortable ng-model="field.Options">
+                                <li ng-repeat="option in field.Options">
+                                    <label>
+                                        <span>Value:</span>
+                                        <input type="text" ng-model="option.Value" />
+                                        <button type="button" ng-click="removeOption(field,option)">Remove</button>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class='field-controls'>
+                <select class='new-field-type' ng-model="section.newFieldType">
+                    <option value=""></option>
+                    <option value="textbox">Textbox</option>
+                    <option value="text">Text</option>
+                    <option value="textarea">Textarea</option>
+                    <option value="radio">Radio</option>
+                    <option value="checkbox">Checkbox</option>
+                    <option value="select">Select</option>
+                </select>
+                <button type='button' ng-click="addField(section)">Add Field</button>
+            </div>
+            <div class="section_controls">
+                <button type="button" ng-click="removeSection(section)">Remove Section</button>
+            </div>
+        </li>
+    </ul>
 </section>
 <section class='form-controls'>
-	<button ng-click="saveForm()">Save Form</button>
+    <button type="button" ng-click="addSection()">Add Section</button>
+    <button ng-click="saveForm()">Save Form</button>
 </section>

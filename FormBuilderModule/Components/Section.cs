@@ -10,7 +10,7 @@ namespace Beefry.FormBuilder
     {
         public int? ID { get; set; }
         public string Name { get; set; }
-        public string Order { get; set; }
+        public string SortOrder { get; set; }
         public List<Field> Fields { get; set; }
     }
 }

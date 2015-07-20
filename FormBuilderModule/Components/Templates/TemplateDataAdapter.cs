@@ -11,42 +11,49 @@ namespace Beefry.FormBuilder
     public class TemplateDataAdapter : BeefryDataAdapter
     {
         protected Template InternalTemplate;
+        protected TemplateCollection InternalTemplates;
         /// <summary>
         /// Constructor for the FormDataAdapter. Initiates all communication to the database and all data aquisition.
         /// </summary>
         /// <param name="refForm">the Form that is used to make CRUD actions on. SHOULD be passed by reference by default.</param>
-        public TemplateDataAdapter() : base() {}
-
-        public TemplateCollection GetTemplates(int Number = 10)
+        public TemplateDataAdapter() : base()
         {
             try
             {
                 conn.Open();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw ex;
+                throw new Exception("Error trying to open database for FormDataAdapter: " + ex.Message, ex);
             }
+        }
+
+        public TemplateCollection GetTemplates(int Number = 10)
+        {
+            DataSet templatesDS = new DataSet();
+            InternalTemplate = new Template();
             TemplateCollection Forms = new TemplateCollection();
             comm.CommandText = "SELECT TOP(@num) ID FROM " + Config.TableNames["Templates"];
             comm.Parameters.AddWithValue("@num", Number);
             try
             {
-                da.Fill(ds);
-                var ids = ds.GetResults();
-                if (ds != null)
-                {
-
-                    foreach (DataRow id in ids)
-                    {
-                        Template formRef = new Template((int)id["ID"]);
-                        Forms.Add(formRef);
-                    }
-                }
+                da.Fill(templatesDS);
             }
             catch (Exception ex)
             {
                 throw new Exception("Error trying to open database connection in GetTopForms: " + ex.Message, ex);
+            }
+
+            var ids = templatesDS.GetResults();
+
+            if (ds != null)
+            {
+
+                foreach (DataRow id in ids)
+                {
+                    Template formRef = GetTemplate((int)id["ID"]);
+                    Forms.Add(formRef);
+                }
             }
 
             return Forms;
@@ -59,23 +66,19 @@ namespace Beefry.FormBuilder
         /// <param name="Recursive">Defaults to true. If set to false, only gets the data for the form and nothing further (IE the sections).</param>
         public Template GetTemplate(int ID, bool Recursive = true)
         {
-            try
-            {
-                conn.Open();
-            }
-            catch (SqlException ex)
-            {
-                throw new Exception("Error trying to open database for FormDataAdapter: " + ex.Message, ex);
-            }
+            ClearData();
+            DataSet templateDS = new DataSet();
+            InternalTemplate = new Template();
 
-            comm.CommandText = "SELECT * FROM " + Config.TableNames["Forms"] + " WHERE ID=@ID;";
-            comm.Parameters.AddWithValue("@ID", InternalTemplate.ID);
+            comm.CommandText = "SELECT * FROM " + Config.TableNames["Templates"] + " WHERE ID=@ID;";
+            comm.Parameters.AddWithValue("@ID", ID);
             try
             {
-                da.Fill(ds);
-                var formMeta = ds.GetResults();
+                da.Fill(templateDS);
+                var formMeta = templateDS.GetResults();
                 if (formMeta != null)
                 {
+                    InternalTemplate.ID = ID;
                     InternalTemplate.Name = (string)formMeta[0]["Name"];
                     InternalTemplate.Description = (string)formMeta[0]["Description"];
                     InternalTemplate.Sections = new List<Section>();
@@ -100,7 +103,8 @@ namespace Beefry.FormBuilder
         /// </summary>
         public void SaveTemplate(Template template)
         {
-            this.ClearData();
+            InternalTemplate = template;
+            ClearData();
             //Update the form information
             //conn.BeginTransaction("formTransaction");
             //Reusing the parameters from the statement above.
@@ -171,17 +175,17 @@ namespace Beefry.FormBuilder
         /// <param name="comm">The SqlCommand currently being used</param>
         private List<Field> GetFields(Section section)
         {
+            DataSet fieldDS = new DataSet();
             List<Field> Fields = new List<Field>();
 
             comm.Parameters.Clear();
-            ds.Clear();
 
             comm.CommandText = "SELECT * FROM " + Config.TableNames["Fields"] + " WHERE SectionID=@SectionID ORDER BY SortOrder";
             comm.Parameters.AddWithValue("@SectionID", section.ID);
             try
             {
-                da.Fill(ds);
-                var fieldsData = ds.GetResults();
+                da.Fill(fieldDS);
+                var fieldsData = fieldDS.GetResults();
                 if (fieldsData != null)
                 {
                     foreach (DataRow field in fieldsData)
@@ -191,8 +195,8 @@ namespace Beefry.FormBuilder
                             Field newField = new Field(field);
                             newField.SectionID = section.ID;
                             newField.ID = (int)field["ID"];
-                            newField.Label = (string)field["ID"];
-                            newField.Required = (bool)field["Requierd"];
+                            newField.Label = (string)field["Label"];
+                            newField.Required = (bool)field["Required"];
                             newField.SortOrder = (int)field["SortOrder"];
                             newField.Type = (string)field["Type"];
                             newField.Options = GetOptions(newField);
@@ -231,15 +235,15 @@ namespace Beefry.FormBuilder
         /// <returns></returns>
         private List<Option> GetOptions(Field field)
         {
-            ds.Clear();
+            DataSet optionDS = new DataSet();
             comm.Parameters.Clear();
             List<Option> Options = new List<Option>();
             comm.CommandText = "SELECT * FROM " + Config.TableNames["Options"] + " WHERE FieldID=@FieldID";
             comm.Parameters.AddWithValue("@FieldID", field.ID);
             try
             {
-                da.Fill(ds);
-                var optionData = ds.GetResults();
+                da.Fill(optionDS);
+                var optionData = optionDS.GetResults();
                 if (optionData != null)
                 {
                     foreach (DataRow option in optionData)
@@ -272,22 +276,27 @@ namespace Beefry.FormBuilder
         #region setters
         private void SaveSections()
         {
-            this.ClearData();
+            ClearData();
 
             //DELETE the fields that are currently not a part of the model
             comm.CommandText = "DELETE FROM " + Config.TableNames["Sections"] + " WHERE FormID=@FormID";
             if (InternalTemplate.Sections.Count > 0)
             {
                 string retainInQuery = " AND ID NOT IN (";
+                bool hasExistingID = false;
                 foreach (Section section in InternalTemplate.Sections)
                 {
                     if (section.ID.HasValue)
                     {
                         retainInQuery += section.ID + ",";
+                        hasExistingID = true;
                     }
                 }
-                comm.CommandText += retainInQuery;
-                comm.CommandText = comm.CommandText.Substring(0, comm.CommandText.Length - 1) + ");";
+                if (hasExistingID)
+                {
+                    comm.CommandText += retainInQuery;
+                    comm.CommandText = comm.CommandText.Substring(0, comm.CommandText.Length - 1) + ");";
+                }
                 comm.Parameters.AddWithValue("@FormID", InternalTemplate.ID);
             }
 
@@ -301,24 +310,44 @@ namespace Beefry.FormBuilder
                 throw ex;
             }
 
-            this.ClearData();
             //TODO: Batch these statements
             foreach (Section section in InternalTemplate.Sections)
             {
-                comm.Parameters.AddWithValue("@Name", section.Name);
-                comm.Parameters.AddWithValue("@Order", section.Order);
+                ClearData();
+                comm.Parameters.AddWithValue("@FormID", InternalTemplate.ID);
+                comm.Parameters.AddWithValue("@Name", (section.Name == null ? "" : section.Name));
+                comm.Parameters.AddWithValue("@SortOrder", section.SortOrder);
 
                 if (section.ID.HasValue)
                 {
-                    comm.CommandText = "UPDATE " + Config.TableNames["Sections"] + " SET Name=@Name, Order=@Order WHERE ID=@ID";
+                    comm.CommandText = "UPDATE " + Config.TableNames["Sections"] + " SET FormID=@FormID, Name=@Name, SortOrder=@SortOrder WHERE ID=@ID";
                     comm.Parameters.AddWithValue("@ID", section.ID);
-                    comm.ExecuteNonQuery();
+                    try
+                    {
+                        comm.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
                 else
                 {
-                    comm.CommandText = "INSERT INTO " + Config.TableNames["Sections"] + " (Name, Order) VALUES (@Name,@Order);SELECT SCOPE_IDENTITY();";
-                    int newID = (int)comm.ExecuteScalar();
-                    section.ID = newID;
+                    comm.CommandText = "INSERT INTO " + Config.TableNames["Sections"] + " (FormID, Name, SortOrder) VALUES (@FormID,@Name,@SortOrder);SELECT CAST(SCOPE_IDENTITY() AS int);";
+                    try
+                    {
+                        var newID = comm.ExecuteScalar();
+                        section.ID = (int)newID;
+                    }
+                    catch (InvalidCastException invalcast)
+                    {
+                        throw invalcast;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    
                 }
                 SaveFields(section);
             }
@@ -329,22 +358,27 @@ namespace Beefry.FormBuilder
             #region Delete DB field entries not in current model
             comm.Parameters.Clear();
             //DELETE the fields that are currently not a part of the model
-            comm.CommandText = "DELETE FROM " + Config.TableNames["Fields"] + " WHERE FormID=@FormID";
+            comm.CommandText = "DELETE FROM " + Config.TableNames["Fields"] + " WHERE SectionID=@SectionID";
             if (section.Fields.Count > 0)
             {
                 string retainInQuery = " AND ID NOT IN (";
+                bool hasExistingID = false;
                 foreach (Field field in section.Fields)
                 {
                     if (field.ID.HasValue)
                     {
                         retainInQuery += field.ID + ",";
+                        hasExistingID = true;
                     }
                 }
-                //remove the last comma and then append a closing parenthesis.
-                comm.CommandText += retainInQuery;
-                comm.CommandText = comm.CommandText.Substring(0, comm.CommandText.Length - 1) + ");";
+                if (hasExistingID)
+                {
+                    //remove the last comma and then append a closing parenthesis.
+                    comm.CommandText += retainInQuery;
+                    comm.CommandText = comm.CommandText.Substring(0, comm.CommandText.Length - 1) + ");";
+                }                
 
-                comm.Parameters.AddWithValue("@FormID", InternalTemplate.ID);
+                comm.Parameters.AddWithValue("@SectionID", InternalTemplate.ID);
             }
             try
             {
@@ -363,9 +397,9 @@ namespace Beefry.FormBuilder
 
             foreach (Field field in section.Fields)
             {
-                this.ClearData();
+                comm.Parameters.Clear();
                 field.SectionID = section.ID;
-                comm.Parameters.AddWithValue("FormID", field.SectionID);
+                comm.Parameters.AddWithValue("SectionID", field.SectionID);
                 comm.Parameters.AddWithValue("Label", field.Label);
                 comm.Parameters.AddWithValue("Required", field.Required);
                 comm.Parameters.AddWithValue("SortOrder", field.SortOrder);
@@ -373,7 +407,7 @@ namespace Beefry.FormBuilder
 
                 if (field.ID.HasValue)
                 {
-                    comm.CommandText = "UPDATE " + Config.TableNames["Fields"] + " SET FormID=@FormID,Label=@Label,"
+                    comm.CommandText = "UPDATE " + Config.TableNames["Fields"] + " SET SectionID=@SectionID,Label=@Label,"
                         + "Required=@Required,SortOrder=@SortOrder,Type=@Type WHERE ID=@ID";
                     comm.Parameters.AddWithValue("ID", field.ID);
                     try
@@ -387,11 +421,11 @@ namespace Beefry.FormBuilder
                 }
                 else
                 {
+                    comm.CommandText = "INSERT INTO " + Config.TableNames["Fields"] + " (SectionID, Label, Required, SortOrder, Type) "
+                        + "VALUES (@SectionID, @Label, @Required, @SortOrder, @Type); SELECT SCOPE_IDENTITY();";
                     try
                     {
                         field.ID = Convert.ToInt32(comm.ExecuteScalar());
-                        comm.CommandText = "INSERT INTO " + Config.TableNames["Fields"] + " (FormID, Label, Required, SortOrder, Type) "
-                        + "VALUES (@FormID, @Label, @Required, @SortOrder, @Type); SELECT SCOPE_IDENTITY();";
                     }
                     catch (SqlException ex)
                     {
@@ -406,21 +440,29 @@ namespace Beefry.FormBuilder
 
         private void SaveOptions(Field field)
         {
-            if ((field.Type == "select" || field.Type == "checkbox" || field.Type == "radio") && field.Options.Count > 0)
+            if ((field.Type == "select" || field.Type == "checkbox" || field.Type == "radio" || field.Type == "text") && field.Options.Count > 0)
             {
                 this.ClearData();
-                comm.Parameters.AddWithValue("@FieldID", field.ID);
                 if (field.Options.Count > 0)
                 {
                     string retainInQuery = " AND ID NOT IN (";
+                    bool hasExistingID = false;
                     comm.CommandText = "DELETE FROM " + Config.TableNames["Options"] + " WHERE FieldID=@FieldID";
                     foreach (Option option in field.Options)
                     {
                         //TODO: Parameterize InternalForm
-                        retainInQuery += option.ID + ",";
+                        if (option.ID.HasValue)
+                        {
+                            retainInQuery += option.ID + ",";
+                            hasExistingID = true;
+                        }
                     }
-                    comm.CommandText += retainInQuery;
-                    comm.CommandText = comm.CommandText.Substring(0, comm.CommandText.Length - 1) + ");";
+                    if (hasExistingID)
+                    {
+                        comm.CommandText += retainInQuery;
+                        comm.CommandText = comm.CommandText.Substring(0, comm.CommandText.Length - 1) + ");";
+                    }
+                    comm.Parameters.AddWithValue("@FieldID", field.ID);
                 }
 
                 try

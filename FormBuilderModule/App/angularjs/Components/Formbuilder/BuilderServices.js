@@ -1,4 +1,5 @@
-angular.module('formbuilder').service('formAPI',['$resource','formAPIPath',function($resource,formAPIPath){
+angular.module('formbuilder')
+.service('formAPI',['$resource','formAPIPath',function($resource,formAPIPath){
 	this.save = function(form,callback) {
 		Form = $resource(formAPIPath);
 		// console.log(form);

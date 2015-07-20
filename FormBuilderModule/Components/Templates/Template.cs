@@ -50,7 +50,7 @@ namespace Beefry.FormBuilder
         #endregion
 
         #region public Methods
-        public void Load(int ID, bool Recursive = false)
+        public void Load(int ID, bool Recursive = true)
         {
             this.ID = ID;
             //getFormStructure(comm);

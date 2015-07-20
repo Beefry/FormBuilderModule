@@ -66,47 +66,7 @@ namespace FormBuilderModule.Properties {
         /// (c) 2010-2014 Google, Inc. http://angularjs.org
         /// License: MIT
         ///*/
-        ///(function(Q,X,t){&apos;use strict&apos;;function x(b){return function(){var a=arguments[0],c,a=&quot;[&quot;+(b?b+&quot;:&quot;:&quot;&quot;)+a+&quot;] http://errors.angularjs.org/1.2.23/&quot;+(b?b+&quot;/&quot;:&quot;&quot;)+a;for(c=1;c&lt;arguments.length;c++)a=a+(1==c?&quot;?&quot;:&quot;&amp;&quot;)+&quot;p&quot;+(c-1)+&quot;=&quot;+encodeURIComponent(&quot;function&quot;==typeof arguments[c]?arguments[c].toString().replace(/ \{[\s\S]*$/,&quot;&quot;):&quot;undefined&quot;==typeof arguments[c]?&quot;undefined&quot;:&quot;string&quot;!=typeof arguments[c]?JSON.stringify(arguments[ [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string angular_min {
-            get {
-                return ResourceManager.GetString("angular_min", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// AngularJS v1.3.8
-        /// (c) 2010-2014 Google, Inc. http://angularjs.org
-        /// License: MIT
-        ///*/
-        ///(function(I,d,B){&apos;use strict&apos;;function D(f,q){q=q||{};d.forEach(q,function(d,h){delete q[h]});for(var h in f)!f.hasOwnProperty(h)||&quot;$&quot;===h.charAt(0)&amp;&amp;&quot;$&quot;===h.charAt(1)||(q[h]=f[h]);return q}var w=d.$$minErr(&quot;$resource&quot;),C=/^(\.[a-zA-Z_$][0-9a-zA-Z_$]*)+$/;d.module(&quot;ngResource&quot;,[&quot;ng&quot;]).provider(&quot;$resource&quot;,function(){var f=this;this.defaults={stripTrailingSlashes:!0,actions:{get:{method:&quot;GET&quot;},save:{method:&quot;POST&quot;},query:{m [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string angular_resource_min {
-            get {
-                return ResourceManager.GetString("angular_resource_min", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /*
-        /// jQuery UI Sortable plugin wrapper
-        ///
-        /// @param [ui-sortable] {object} Options to pass to $.fn.sortable() merged onto ui.config
-        /// */
-        ///angular.module(&apos;ui.sortable&apos;, [])
-        ///  .value(&apos;uiSortableConfig&apos;,{})
-        ///  .directive(&apos;uiSortable&apos;, [
-        ///    &apos;uiSortableConfig&apos;, &apos;$timeout&apos;, &apos;$log&apos;,
-        ///    function(uiSortableConfig, $timeout, $log) {
-        ///      return {
-        ///        require: &apos;?ngModel&apos;,
-        ///        scope: {
-        ///          ngModel: &apos;=&apos;,
-        ///          uiSortable: &apos;=&apos;
-        ///        },
-        ///        link: function(scope, element, attrs, ngModel) {
-        ///          var  [rest of string was truncated]&quot;;.
+        ///(function(Q,X,t){&apos;use strict&apos;;function x(b){return function(){var a=arguments[0],c,a=&quot;[&quot;+(b?b+&quot;:&quot;:&quot;&quot;)+a+&quot;] http://errors.angularjs.org/1.2.23/&quot;+(b?b+&quot;/&quot;:&quot;&quot;)+a;for(c=1;c&lt;arguments.length;c++)a=a+(1==c?&quot;?&quot;:&quot;&amp;&quot;)+&quot;p&quot;+(c-1)+&quot;=&quot;+encodeURIComponent(&quot;function&quot;==typeof arguments[c]?arguments[c].toString().replace(/ \{[\s\S]*$/,&quot;&quot;):&quot;undefined&quot;==typeof arguments[c]?&quot;undefined&quot;:&quot;string&quot;!=typeof arguments[c]?JSON.stringify(argum [rest of string was truncated]&quot;;.
         /// </summary>
         public static string app {
             get {
@@ -119,22 +79,21 @@ namespace FormBuilderModule.Properties {
         ///	&lt;div&gt;
         ///		&lt;label&gt;
         ///			&lt;span&gt;Name&lt;/span&gt;
-        ///			&lt;input type=&apos;text&apos; ng-model=&quot;model.name&quot; placeholder=&quot;Name&quot;/&gt;
+        ///			&lt;input type=&apos;text&apos; ng-model=&quot;model.Name&quot; placeholder=&quot;Name&quot;/&gt;
         ///		&lt;/label&gt;
         ///	&lt;/div&gt;
         ///	&lt;div&gt;
         ///		&lt;label&gt;
         ///			&lt;span&gt;Description&lt;/span&gt;
-        ///			&lt;input type=&apos;text&apos; ng-model=&quot;model.description&quot; placeholder=&quot;Description&quot;/&gt;
+        ///			&lt;input type=&apos;text&apos; ng-model=&quot;model.Description&quot; placeholder=&quot;Description&quot;/&gt;
         ///		&lt;/label&gt;
         ///	&lt;/div&gt;
         ///&lt;/section&gt;
-        ///&lt;section class=&apos;fb-fields&apos;&gt;
-        ///	&lt;ul ui-sortable ng-model=&quot;model.fields&quot;&gt;
-        ///		&lt;li class=&apos;field-group&apos; ng-repeat=&quot;field in model.fields&quot;&gt;
-        ///			&lt;div&gt;
-        ///				&lt;div class=&apos;field-main&apos;&gt;
-        ///					&lt;span&gt;Type:{{fiel [rest of string was truncated]&quot;;.
+        ///&lt;section class=&apos;sections&apos;&gt;
+        ///	&lt;ul ui-sortable ng-model=&quot;model.Sections&quot;&gt;
+        ///		&lt;li class=&apos;section-group&apos; ng-repeat=&quot;section in model.Sections&quot;&gt;
+        ///			&lt;ul ui-sortable ng-model=&quot;model.Fields&quot;&gt;
+        ///				&lt;li cl [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Builder_template {
             get {
