@@ -7,7 +7,7 @@ angular.module('formbuilder')
 				FormBuilderID: "@id"
 			},
 			controllerAs: 'Builder',
-			controller: ['$scope','$window','formAPI','redirectPath',function($scope,$window,formAPI,redirectPath){
+			controller: ['$scope','$window','templateAPI','redirectPath',function($scope,$window,templateAPI,redirectPath){
 				var builder = this;
 				var Section = function() {
 					this.ID = null;
@@ -64,22 +64,20 @@ angular.module('formbuilder')
 					this.Value = "";
 				};
 
-				var Form = function () {
+				var Template = function () {
 					this.ID = null;
 					this.Name = null;
 					this.Description = null;
 					this.Sections = [];
 				};
 
-				$scope.model = new Form();
+				$scope.model = new Template();
 				$scope.newFieldType = "";
 
 				$scope.addField = function(section) {
 					try {
 						var newField = new Field(section);
 						section.Fields.push(newField);
-						console.log(newField);
-						console.log(section);
 					} catch (error) {
 						//handle error message
 						throw error;
@@ -127,9 +125,7 @@ angular.module('formbuilder')
 							field.SortOrder = fieldIndex;
 						})
 					});
-					console.log($scope.model);
-					formAPI.save($scope.model,function(data) {
-						console.log(data.result);
+					templateAPI.save($scope.model,function(data) {
 						if(data.result == "success") {
 							$window.location.href = redirectPath;
 						} else if (data.result == "error") {
@@ -159,37 +155,13 @@ angular.module('formbuilder')
 				};
 
 				// if(typeof $scope.FormBuilderID != "undefined") {
-					console.log($scope.FormBuilderID);
 				// }
 
 				if(typeof $scope.FormBuilderID != "undefined") {
-					formAPI.get($scope.FormBuilderID,function(data) {
-						console.log(data);
+					templateAPI.get($scope.FormBuilderID,function(data) {
 						$scope.model = data;
 					});
 				}
 			}]
-		}
-	})
-	.directive('formdisplay',function(){
-		return {
-			templateUrl:'/Templates/Displayer.htm',
-			restrict:'E',
-			scope: {
-				FormBuilderID: "@id"
-			},
-			controllerAs: 'Displayer',
-			controller: ['$scope','formAPI',function($scope,formAPI){
-				var builder = this;
-
-				console.log($scope.FormBuilderID);
-
-				if(typeof $scope.FormBuilderID != "undefined") {
-					formAPI.get($scope.FormBuilderID,function(data) {
-						console.log(data);
-						$scope.model = data;
-					});
-				}
-			}]
-		}
-	});;
+		};
+	});

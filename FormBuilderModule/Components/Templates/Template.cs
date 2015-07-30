@@ -30,8 +30,6 @@ namespace Beefry.FormBuilder
         //For now, this needs to be updated manually based on what is used in the anguar app.
         public static readonly string FormBuilderDirective = "<formbuilder></formbuilder>";
         public static readonly string FormBuilderEditDirective = "<formbuilder id='{0}'></formbuilder>";
-        public static readonly string FormDisplayDirective = "<formdisplay></formdisplay>";
-        public static readonly string FormDisplayEditDirective = "<formdisplay id='{0}'></formdisplay>";
 
         #region Constructors
 

@@ -1,0 +1,55 @@
+<section class='fb-meta'>
+	<div>
+		<label>
+			<span>Template ID</span>
+			<span>{{model.Template.ID}}<span/>
+		</label>
+	</div>
+	<div><label for=""><span>Form ID</span><span>{{model.ID}}</span></label></div>
+</section>
+<section class='fb-fields'>
+	<ul>
+		<li class='section' ng-repeat="section in model.Sections">
+			<ul>
+				<li class='field-group' ng-repeat="field in section.Fields">
+					<div class='field-main' ng-switch on="field.Type">
+						<div ng-switch-when="text">
+							<h3>{{field.Label}}</h3>
+							<p>{{field.Options[0].Value}}</p>
+						</div>
+						<div ng-switch-when="textbox">
+							<h3>{{field.Label}}</h3>
+							<div>{{field.Values[0].Content}}</div>
+						</div>
+						<div ng-switch-when="textarea">
+							<h3>{{field.Label}}</h3>
+							<div>{{field.Values[0].Content}}</div>
+						</div>
+						<div ng-switch-when="radio">
+							<h3>{{field.Label}}</h3>
+							<label ng-repeat="option in field.Options">
+								<span>{{option.Value}}</span>
+								<input type="radio" disabled="disabled" name="{{field.ID}}" ng-model="field.Values[0].Content"/>
+							</label>
+						</div>
+						<div ng-switch-when="select">
+							<h3>{{field.Label}}</h3>
+							<span ng-repeat="option in field.Options">{{option.Value}}</span>
+						</div>
+						<div ng-switch-when="checkbox">
+							<h3>{{field.Label}}</h3>
+							<label ng-repeat="option in field.Options">
+								<span>{{option.Value}}</span>
+								<input type="checkbox" disabled="disabled" name="{{option.ID}}" ng-model="field.Values[$index].Content"/>
+							</label>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<div class='field-controls'></div>
+</section>
+<section class='form-controls'>
+	<button ng-click="editForm()">Edit Form</button>
+</section>

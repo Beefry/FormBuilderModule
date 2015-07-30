@@ -55,6 +55,10 @@ namespace Beefry.FormBuilder
                     Forms.Add(formRef);
                 }
             }
+            else
+            {
+                throw new Exception("No results found");
+            }
 
             return Forms;
         }
@@ -86,6 +90,10 @@ namespace Beefry.FormBuilder
                     {
                         GetSections(Recursive);
                     }
+                }
+                else
+                {
+                    throw new Exception("No results found");
                 }
             }
             catch (Exception ex)
@@ -192,7 +200,7 @@ namespace Beefry.FormBuilder
                     {
                         try
                         {
-                            Field newField = new Field(field);
+                            Field newField = new Field();
                             newField.SectionID = section.ID;
                             newField.ID = (int)field["ID"];
                             newField.Label = (string)field["Label"];
@@ -200,6 +208,17 @@ namespace Beefry.FormBuilder
                             newField.SortOrder = (int)field["SortOrder"];
                             newField.Type = (string)field["Type"];
                             newField.Options = GetOptions(newField);
+                            if (newField.Type == "select" || newField.Type == "radio" || newField.Type == "checkbox")
+                            {
+                                foreach (Option opt in newField.Options)
+                                {
+                                    newField.Values.Add(new Value() { OptionID = opt.ID, FieldID = newField.ID });
+                                }
+                            }
+                            else
+                            {
+                                newField.Values.Add(new Value() { FieldID = newField.ID });
+                            }
                             //If the mode requires field values, then get the values
                             Fields.Add(newField);
                         }

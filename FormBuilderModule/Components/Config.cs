@@ -76,6 +76,8 @@ namespace Beefry.FormBuilder
                 this.isDebug = isDebug;
                 ConfigValidation();
                 this.ServerContext = Server;
+                Console.Out.WriteLine(Config.DBConnectionString);
+                Console.In.ReadLine();
                 Init();
             }
             catch (Exception ex)
@@ -134,6 +136,9 @@ namespace Beefry.FormBuilder
             //TODO: get rid of the two lines below in production
             File.Delete(Path.Combine(ServerContext.MapPath(scriptPath), "app.js"));
             File.Delete(Path.Combine(ServerContext.MapPath(templatePath), "Builder.htm"));
+            File.Delete(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerNew.htm"));
+            File.Delete(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerView.htm"));
+            File.Delete(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerEdit.htm"));
             //Check main app file and create if it doesn't exist
             if (!File.Exists(Path.Combine(ServerContext.MapPath(scriptPath), "app.js")))
             {
@@ -165,6 +170,40 @@ namespace Beefry.FormBuilder
                 try
                 {
                     File.WriteAllText(Path.Combine(ServerContext.MapPath(templatePath), "Builder.htm"), FormBuilderModule.Properties.Resources.Builder_template);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            if (!File.Exists(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerNew.htm")))
+            {
+                try
+                {
+                    File.WriteAllText(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerNew.htm"), FormBuilderModule.Properties.Resources.DisplayerNew);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            if (!File.Exists(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerView.htm")))
+            {
+                try
+                {
+                    File.WriteAllText(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerView.htm"), FormBuilderModule.Properties.Resources.DisplayerView);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            if (!File.Exists(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerEdit.htm")))
+            {
+                try
+                {
+                    File.WriteAllText(Path.Combine(ServerContext.MapPath(templatePath), "DisplayerEdit.htm"), FormBuilderModule.Properties.Resources.DisplayerEdit);
                 }
                 catch (Exception ex)
                 {
@@ -271,7 +310,7 @@ namespace Beefry.FormBuilder
                     //Check if values table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Values"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FormID int, FieldID int, Content varchar(150)); END";
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Values"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FormID int, FieldID int, OptionID int, Content varchar(150)); END";
                     comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
                     comm.Parameters.AddWithValue("tableName", TableNamesSansSchema["Values"]);
                     try

@@ -27,6 +27,11 @@ namespace Beefry.FormBuilder
         [JsonProperty]
         public Template Template;
 
+        public static readonly string FormDisplayDirective = "<formdisplayer></formdisplayer>";
+        public static readonly string FormDisplayEditDirective = "<formdisplayeredit fid='{0}'></formdisplayeredit>";
+        public static readonly string FormDisplayViewDirective = "<formdisplayerview fid='{0}'></formdisplayerview>";
+        public static readonly string FormDisplayNewDirective = "<formdisplayeredit tid='{0}'></formdisplayeredit>";
+
         public Form() : base() {}
 
         public Form(int ID) : base() 
@@ -34,15 +39,43 @@ namespace Beefry.FormBuilder
             Load(ID);
         }
 
+        public void New(int TemplateID)
+        {
+            TemplateDataAdapter adapter = new TemplateDataAdapter();
+            try
+            {
+                this.Template = adapter.GetTemplate(TemplateID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error trying to load teamplate in Template.New(). See inner exception for details.", ex);
+            }
+            try
+            {
+                this.Sections = Template.Sections;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error trying to load form in Template.New(). See inner exception for details.", ex);
+            }            
+        }
+
         public void Load(int ID)
         {
             FormDataAdapter adapter = new FormDataAdapter();
-            Form f = adapter.GetForm(ID);
-            this.ID = f.ID;
-            this.CreatedDate = f.CreatedDate;
-            this.CreatedBy = f.CreatedBy;
-            this.Template = f.Template;
-            this.Sections = f.Template.Sections;
+            try
+            {
+                Form f = adapter.GetForm(ID);
+                this.ID = f.ID;
+                this.CreatedDate = f.CreatedDate;
+                this.CreatedBy = f.CreatedBy;
+                this.Template = f.Template;
+                this.Sections = f.Template.Sections;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error trying to load form in Template.Load(). See inner exception for details.", ex);
+            }
         }
 
         public void Save()

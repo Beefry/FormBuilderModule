@@ -76,28 +76,101 @@ namespace FormBuilderModule.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;section class=&apos;fb-meta&apos;&gt;
-        ///	&lt;div&gt;
-        ///		&lt;label&gt;
-        ///			&lt;span&gt;Name&lt;/span&gt;
-        ///			&lt;input type=&apos;text&apos; ng-model=&quot;model.Name&quot; placeholder=&quot;Name&quot;/&gt;
-        ///		&lt;/label&gt;
-        ///	&lt;/div&gt;
-        ///	&lt;div&gt;
-        ///		&lt;label&gt;
-        ///			&lt;span&gt;Description&lt;/span&gt;
-        ///			&lt;input type=&apos;text&apos; ng-model=&quot;model.Description&quot; placeholder=&quot;Description&quot;/&gt;
-        ///		&lt;/label&gt;
-        ///	&lt;/div&gt;
+        ///    &lt;div&gt;
+        ///        &lt;label&gt;
+        ///            &lt;span&gt;Name&lt;/span&gt;
+        ///            &lt;input type=&apos;text&apos; ng-model=&quot;model.Name&quot; placeholder=&quot;Name&quot; /&gt;
+        ///        &lt;/label&gt;
+        ///    &lt;/div&gt;
+        ///    &lt;div&gt;
+        ///        &lt;label&gt;
+        ///            &lt;span&gt;Description&lt;/span&gt;
+        ///            &lt;input type=&apos;text&apos; ng-model=&quot;model.Description&quot; placeholder=&quot;Description&quot; /&gt;
+        ///        &lt;/label&gt;
+        ///    &lt;/div&gt;
         ///&lt;/section&gt;
         ///&lt;section class=&apos;sections&apos;&gt;
-        ///	&lt;ul ui-sortable ng-model=&quot;model.Sections&quot;&gt;
-        ///		&lt;li class=&apos;section-group&apos; ng-repeat=&quot;section in model.Sections&quot;&gt;
-        ///			&lt;ul ui-sortable ng-model=&quot;model.Fields&quot;&gt;
-        ///				&lt;li cl [rest of string was truncated]&quot;;.
+        ///    &lt;ul ui-sortable ng-model=&quot;model.Sections&quot;&gt;
+        ///        &lt;li class=&apos;section-group&apos; ng-repeat=&quot;s [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Builder_template {
             get {
                 return ResourceManager.GetString("Builder_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;section class=&apos;fb-meta&apos;&gt;
+        ///	&lt;div&gt;
+        ///		&lt;label&gt;
+        ///			&lt;span&gt;Template ID&lt;/span&gt;
+        ///			&lt;input type=&quot;text&quot; ng-model=&quot;model.Template.ID&quot;/&gt;
+        ///		&lt;/label&gt;
+        ///	&lt;/div&gt;
+        ///	&lt;div&gt;&lt;label for=&quot;&quot;&gt;&lt;span&gt;Form ID&lt;/span&gt;&lt;input type=&quot;text&quot; ng-model=&quot;model.ID&quot;&gt;&lt;/label&gt;&lt;/div&gt;
+        ///&lt;/section&gt;
+        ///&lt;section class=&apos;fb-fields&apos;&gt;
+        ///	&lt;ul&gt;
+        ///		&lt;li class=&apos;section&apos; ng-repeat=&quot;section in model.Sections&quot;&gt;
+        ///			&lt;ul&gt;
+        ///				&lt;li class=&apos;field-group&apos; ng-repeat=&quot;field in section.Fields&quot;&gt;
+        ///					{{field.Type}}
+        ///					&lt;div class=&apos;field-main&apos; ng-switch on=&quot;field.Type&quot;&gt;
+        ///				 [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DisplayerEdit {
+            get {
+                return ResourceManager.GetString("DisplayerEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;section class=&apos;fb-meta&apos;&gt;
+        ///	&lt;div&gt;
+        ///		&lt;label&gt;
+        ///			&lt;span&gt;Template ID&lt;/span&gt;
+        ///			&lt;input type=&quot;text&quot; ng-model=&quot;model.Template.ID&quot;/&gt;
+        ///		&lt;/label&gt;
+        ///	&lt;/div&gt;
+        ///	&lt;div&gt;&lt;label for=&quot;&quot;&gt;&lt;span&gt;Form ID&lt;/span&gt;&lt;input type=&quot;text&quot; ng-model=&quot;model.ID&quot;&gt;&lt;/label&gt;&lt;/div&gt;
+        ///&lt;/section&gt;
+        ///&lt;section class=&apos;fb-fields&apos;&gt;
+        ///	&lt;ul&gt;
+        ///		&lt;li class=&apos;section&apos; ng-repeat=&quot;section in model.Sections&quot;&gt;
+        ///			&lt;ul&gt;
+        ///				&lt;li class=&apos;field-group&apos; ng-repeat=&quot;field in section.Fields&quot;&gt;
+        ///					{{field.Type}}
+        ///					&lt;div class=&apos;field-main&apos; ng-switch on=&quot;field.Type&quot;&gt;
+        ///				 [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DisplayerNew {
+            get {
+                return ResourceManager.GetString("DisplayerNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;section class=&apos;fb-meta&apos;&gt;
+        ///	&lt;div&gt;
+        ///		&lt;label&gt;
+        ///			&lt;span&gt;Template ID&lt;/span&gt;
+        ///			&lt;span&gt;{{model.Template.ID}}&lt;span/&gt;
+        ///		&lt;/label&gt;
+        ///	&lt;/div&gt;
+        ///	&lt;div&gt;&lt;label for=&quot;&quot;&gt;&lt;span&gt;Form ID&lt;/span&gt;&lt;span&gt;{{model.ID}}&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;
+        ///&lt;/section&gt;
+        ///&lt;section class=&apos;fb-fields&apos;&gt;
+        ///	&lt;ul&gt;
+        ///		&lt;li class=&apos;section&apos; ng-repeat=&quot;section in model.Sections&quot;&gt;
+        ///			&lt;ul&gt;
+        ///				&lt;li class=&apos;field-group&apos; ng-repeat=&quot;field in section.Fields&quot;&gt;
+        ///					&lt;div class=&apos;field-main&apos; ng-switch on=&quot;field.Type&quot;&gt;
+        ///						&lt;div ng-switch-when=&quot;text&quot;&gt;
+        ///							&lt;h3&gt;{{field. [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DisplayerView {
+            get {
+                return ResourceManager.GetString("DisplayerView", resourceCulture);
             }
         }
     }

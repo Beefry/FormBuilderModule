@@ -1,1 +1,1 @@
-angular.module('formbuilder',['ngResource','ui.sortable']);
+angular.module('formbuilder',['ui.sortable']);

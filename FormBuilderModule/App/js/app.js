@@ -579,10 +579,88 @@ angular.module('ui.sortable', [])
     }
   ]);
 
-angular.module("beefry.fb",['formbuilder']);
+angular.module("beefry.fb",['ngResource','formbuilder','formdisplayer']);
+angular.module('formbuilder',['ui.sortable']);
+angular.module('formdisplayer',[]);
+function Section() {
+	this.ID = null;
+	this.FormID = $scope.model.ID;
+	this.SortOrder = null;
+	this.Name = "";
+	this.Fields = [];
+	this.newFieldType = "";
+}
+function Field(section) {
+	this.Type = section.newFieldType;
+	this.SectionID = section.ID;
+	this.Values = [];
 
-angular.module('formbuilder',['ngResource','ui.sortable']);
+	switch (this.Type) {
+		case 'textbox':
+		case 'textarea':
+		case 'text':
+			this.hasOptions = false;
+			break;
+		case 'select':
+		case 'checkbox':
+		case 'radio':
+			this.hasOptions = true;
+			this.Options = [];
+			break;
+		case '':
+			throw new Error("Please select a field type first.");
+			break;
+		default:
+			throw new Error("Field type not supported. Type given: " + this.Type);
+			break;
+	}
+
+	if (this.Type == 'text')
+		this.Options = [new Option(this)];
+	else
+		this.Options = [];
+
+	if(section.Fields.length > 0) {
+		this.SortOrder = (section.Fields.reduce(function(prev,curr){
+		    if (curr.SortOrder > prev)
+		        return curr.SortOrder;
+			else
+				return prev;
+		},0))+1;
+	} else {
+	    this.SortOrder = 1;
+	}
+}
+
+function Option(field) {
+	this.FieldID = field.ID;
+	this.Value = "";
+}
+
+function Template () {
+	this.ID = null;
+	this.Name = null;
+	this.Description = null;
+	this.Sections = [];
+}
+
 angular.module('formbuilder')
+.service('templateAPI',['$resource','templateAPIPath',function($resource,templateAPIPath){
+	this.save = function(form,callback) {
+		Form = $resource(templateAPIPath);
+		// console.log(form);
+		Form.save(form,function(data){
+			callback(data);
+		});
+	}
+	this.get = function(id, callback) {
+		Form = $resource(templateAPIPath + ":ID");
+		Form.get({ID:id},function(data){
+			callback(data);
+		});
+	};
+}]);
+angular.module('formdisplayer')
 .service('formAPI',['$resource','formAPIPath',function($resource,formAPIPath){
 	this.save = function(form,callback) {
 		Form = $resource(formAPIPath);
@@ -597,6 +675,12 @@ angular.module('formbuilder')
 			callback(data);
 		});
 	};
+	this.newForm = function(templateID, callback) {
+		Form = $resource(formAPIPath + "?templateID=:templateID");
+		Form.get({templateID:templateID},function(data) {
+			callback(data);
+		});
+	};
 }]);
 angular.module('formbuilder')
 	.directive('formbuilder',function(){
@@ -607,7 +691,7 @@ angular.module('formbuilder')
 				FormBuilderID: "@id"
 			},
 			controllerAs: 'Builder',
-			controller: ['$scope','$window','formAPI','redirectPath',function($scope,$window,formAPI,redirectPath){
+			controller: ['$scope','$window','templateAPI','redirectPath',function($scope,$window,templateAPI,redirectPath){
 				var builder = this;
 				var Section = function() {
 					this.ID = null;
@@ -664,22 +748,20 @@ angular.module('formbuilder')
 					this.Value = "";
 				};
 
-				var Form = function () {
+				var Template = function () {
 					this.ID = null;
 					this.Name = null;
 					this.Description = null;
 					this.Sections = [];
 				};
 
-				$scope.model = new Form();
+				$scope.model = new Template();
 				$scope.newFieldType = "";
 
 				$scope.addField = function(section) {
 					try {
 						var newField = new Field(section);
 						section.Fields.push(newField);
-						console.log(newField);
-						console.log(section);
 					} catch (error) {
 						//handle error message
 						throw error;
@@ -727,9 +809,7 @@ angular.module('formbuilder')
 							field.SortOrder = fieldIndex;
 						})
 					});
-					console.log($scope.model);
-					formAPI.save($scope.model,function(data) {
-						console.log(data.result);
+					templateAPI.save($scope.model,function(data) {
 						if(data.result == "success") {
 							$window.location.href = redirectPath;
 						} else if (data.result == "error") {
@@ -759,37 +839,113 @@ angular.module('formbuilder')
 				};
 
 				// if(typeof $scope.FormBuilderID != "undefined") {
-					console.log($scope.FormBuilderID);
 				// }
 
 				if(typeof $scope.FormBuilderID != "undefined") {
-					formAPI.get($scope.FormBuilderID,function(data) {
-						console.log(data);
+					templateAPI.get($scope.FormBuilderID,function(data) {
 						$scope.model = data;
 					});
 				}
 			}]
-		}
-	})
-	.directive('formdisplay',function(){
+		};
+	});
+angular.module('formdisplayer')
+	.directive('formdisplayernew',function(){
 		return {
-			templateUrl:'/Templates/Displayer.htm',
+			templateUrl:'/Templates/DisplayerNew.htm',
 			restrict:'E',
 			scope: {
-				FormBuilderID: "@id"
+				FormID: "@fid",
+				TemplateID: "@tid"
 			},
 			controllerAs: 'Displayer',
 			controller: ['$scope','formAPI',function($scope,formAPI){
-				var builder = this;
+				var displayer = this;
 
-				console.log($scope.FormBuilderID);
+				console.log($scope.TemplateID);
 
-				if(typeof $scope.FormBuilderID != "undefined") {
-					formAPI.get($scope.FormBuilderID,function(data) {
-						console.log(data);
+				if(typeof $scope.FormID != "undefined") {
+					formAPI.get($scope.FormID,function(data) {
 						$scope.model = data;
 					});
+				} else if(typeof $scope.TemplateID != "undefined") {
+					formAPI.newForm($scope.TemplateID,function(data) {
+						$scope.model = data;
+						console.log($scope.model);
+					});
 				}
+
+				$scope.saveForm = function() {
+					formAPI.save($scope.model,function(data){
+						console.log(data);
+					});
+				};
 			}]
 		}
-	});;
+	})
+	.directive('formdisplayerview',function(){
+		return {
+			templateUrl:'/Templates/DisplayerView.htm',
+			restrict:'E',
+			scope: {
+				FormID: "@fid",
+				TemplateID: "@tid"
+			},
+			controllerAs: 'Displayer',
+			controller: ['$scope','formAPI',function($scope,formAPI){
+				var displayer = this;
+
+				console.log($scope.TemplateID);
+
+				if(typeof $scope.FormID != "undefined") {
+					formAPI.get($scope.FormID,function(data) {
+						$scope.model = data;
+					});
+				} else if(typeof $scope.TemplateID != "undefined") {
+					formAPI.newForm($scope.TemplateID,function(data) {
+						$scope.model = data;
+						console.log($scope.model);
+					});
+				}
+
+				$scope.saveForm = function() {
+					formAPI.save($scope.model,function(data){
+						console.log(data);
+					});
+				};
+			}]
+		}
+	})
+	.directive('formdisplayeredit',function(){
+		return {
+			templateUrl:'/Templates/DisplayerEdit.htm',
+			restrict:'E',
+			scope: {
+				FormID: "@fid",
+				TemplateID: "@tid"
+			},
+			controllerAs: 'Displayer',
+			controller: ['$scope','formAPI',function($scope,formAPI){
+				var displayer = this;
+
+				console.log($scope.TemplateID);
+
+				if(typeof $scope.FormID != "undefined") {
+					formAPI.get($scope.FormID,function(data) {
+						$scope.model = data;
+					});
+				} else if(typeof $scope.TemplateID != "undefined") {
+					formAPI.newForm($scope.TemplateID,function(data) {
+						$scope.model = data;
+						console.log($scope.model);
+					});
+				}
+
+				$scope.saveForm = function() {
+					formAPI.save($scope.model,function(data){
+						console.log(data);
+					});
+				};
+			}]
+		}
+	});

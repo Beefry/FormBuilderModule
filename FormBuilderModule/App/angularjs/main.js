@@ -1,1 +1,1 @@
-angular.module("beefry.fb",['formbuilder']);
+angular.module("beefry.fb",['ngResource','formbuilder','formdisplayer']);

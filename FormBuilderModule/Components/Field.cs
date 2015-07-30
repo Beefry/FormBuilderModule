@@ -36,6 +36,7 @@ namespace Beefry.FormBuilder
         public Field()
         {
             this.Options = new List<Option>();
+            this.Values = new List<Value>();
         }
 
         public bool Validate(DataRow fieldData) 
