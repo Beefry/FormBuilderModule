@@ -46,7 +46,7 @@ namespace Beefry.FormBuilder
 
             var ids = templatesDS.GetResults();
 
-            if (ds != null)
+            if (ids != null)
             {
 
                 foreach (DataRow id in ids)
@@ -57,7 +57,8 @@ namespace Beefry.FormBuilder
             }
             else
             {
-                throw new Exception("No results found");
+                //throw new Exception("No results found");
+                return null;
             }
 
             return Forms;

@@ -76,8 +76,6 @@ namespace Beefry.FormBuilder
                 this.isDebug = isDebug;
                 ConfigValidation();
                 this.ServerContext = Server;
-                Console.Out.WriteLine(Config.DBConnectionString);
-                Console.In.ReadLine();
                 Init();
             }
             catch (Exception ex)
@@ -106,7 +104,7 @@ namespace Beefry.FormBuilder
         {
             try
             {
-                this.InjectWebFiles();
+                //this.InjectWebFiles();
                 this.EnsureTableIntegrity();
             }
             catch (Exception ex)
@@ -295,7 +293,7 @@ namespace Beefry.FormBuilder
                     //Check if options table exists and create if not
                     comm.Parameters.Clear();
                     comm.CommandText = "IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = @dbName AND TABLE_NAME = @tableName))" +
-                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Options"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FieldID int, Value varchar(50), SortOrder int); END";
+                        " BEGIN CREATE TABLE " + TableNamesSansSchema["Options"] + " (ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, FieldID int, Value varchar(MAX), SortOrder int); END";
                     comm.Parameters.AddWithValue("dbName", DefaultSettings["DatabaseName"]);
                     comm.Parameters.AddWithValue("tableName", TableNamesSansSchema["Options"]);
                     try
