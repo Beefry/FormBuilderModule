@@ -15,3 +15,11 @@ C:\Web Projects\Projects\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuild
 C:\Web Projects\Projects\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.csproj.GenerateResource.Cache
 C:\Web Projects\Projects\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.dll
 C:\Web Projects\Projects\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.pdb
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\bin\Debug\FormBuilderModule.dll
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\bin\Debug\FormBuilderModule.pdb
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.csprojResolveAssemblyReference.cache
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.Properties.Resources.resources
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.csproj.GenerateResource.Cache
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.dll
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Debug\FormBuilderModule.pdb

@@ -1,0 +1,8 @@
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\bin\Release\FormBuilderModule.dll
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\bin\Release\FormBuilderModule.pdb
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\bin\Release\Newtonsoft.Json.dll
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Release\FormBuilderModule.csprojResolveAssemblyReference.cache
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Release\FormBuilderModule.Properties.Resources.resources
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Release\FormBuilderModule.csproj.GenerateResource.Cache
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Release\FormBuilderModule.dll
+C:\Users\jcooper.RTM\Documents\GitHub\FormBuilderModule\FormBuilderModule\obj\Release\FormBuilderModule.pdb
